@@ -1,21 +1,21 @@
 import React, { memo } from 'react'
-import { Avatar, AvatarProps } from 'react-native-ui-kitten'
+import { ImageProps } from 'react-native'
+import Image from './Image'
 
-interface Props extends AvatarProps {
-  height?: number
-  width?: number
+interface Props extends ImageProps {
+  size?: number
 }
 
 export default memo((props: Props) => {
-  const { style, height, width, ...restProps } = props
+  const { style, size = 40, ...restProps } = props
 
   return (
-    <Avatar
+    <Image
+      height={size}
+      width={size}
       style={[
         {
-          ...(height && { height }),
-          ...(width && { width }),
-          backgroundColor: '#eceff1'
+          borderRadius: size / 2
         },
         style
       ]}
