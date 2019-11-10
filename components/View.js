@@ -3,7 +3,7 @@ import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { darken } from '../utils';
 export default memo((props) => {
-    const { flex, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, children, ...restProps } = props;
+    const { flex, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, ...restProps } = props;
     const activeColor = props.activeColor ||
         darken(color === 'transparent' ? '#ffffff' : color, 4);
     const verticalAlignValue = {
@@ -51,15 +51,11 @@ export default memo((props) => {
         style
     ];
     if (onPress) {
-        return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut} style={finalStyle} {...restProps}>
-        <View style={{ flex: 1 }}>
-          {children}
-        </View>
+        return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
+        <View style={finalStyle} {...restProps}/>
       </TouchableWithoutFeedback>);
     }
     else {
-        return (<View style={finalStyle} {...restProps}>
-        {children}
-      </View>);
+        return (<View style={finalStyle} {...restProps}/>);
     }
 });

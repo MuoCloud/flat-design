@@ -40,7 +40,6 @@ export default memo((props: Props) => {
     enableBottomSpace,
     onPress,
     style,
-    children,
     ...restProps
   } = props
 
@@ -102,19 +101,13 @@ export default memo((props: Props) => {
         onPress={onPress}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
-        style={finalStyle}
-        {...restProps}
       >
-        <View style={{ flex: 1 }}>
-          {children}
-        </View>
+        <View style={finalStyle} {...restProps} />
       </TouchableWithoutFeedback>
     )
   } else {
     return (
-      <View style={finalStyle} {...restProps}>
-        {children}
-      </View>
+      <View style={finalStyle} {...restProps} />
     )
   }
 })
