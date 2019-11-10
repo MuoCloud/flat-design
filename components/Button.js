@@ -1,7 +1,16 @@
-import React, { memo, useCallback, useState } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { darken, getContentColorSystem, lighten } from '../utils';
-export default memo((props) => {
+"use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importStar(require("react"));
+const react_native_1 = require("react-native");
+const utils_1 = require("../utils");
+exports.default = react_1.memo((props) => {
     const { children, size = 'large', color = '#ffffff', disabled, round = true, bold = true, textSize, onPress, style, ...restRrops } = props;
     const height = {
         large: 46,
@@ -18,18 +27,18 @@ export default memo((props) => {
         medium: 12.5,
         small: 10
     }[size];
-    const colorSystem = getContentColorSystem(color);
+    const colorSystem = utils_1.getContentColorSystem(color);
     const textColor = props.textColor
         || (colorSystem === 'light-content' ? '#ffffff' : '#000000');
-    const [active, setActive] = useState(false);
-    const onPressIn = useCallback(() => setActive(true), []);
-    const onPressOut = useCallback(() => setActive(false), []);
-    return (<TouchableWithoutFeedback onPress={event => {
+    const [active, setActive] = react_1.useState(false);
+    const onPressIn = react_1.useCallback(() => setActive(true), []);
+    const onPressOut = react_1.useCallback(() => setActive(false), []);
+    return (<react_native_1.TouchableWithoutFeedback onPress={event => {
         if (!disabled) {
             onPress(event);
         }
     }} onPressIn={onPressIn} onPressOut={onPressOut}>
-      <View style={[
+      <react_native_1.View style={[
         {
             justifyContent: 'center',
             alignItems: 'center',
@@ -40,25 +49,25 @@ export default memo((props) => {
             }),
             ...(disabled ? {
                 backgroundColor: colorSystem === 'dark-content'
-                    ? darken(color, 30)
-                    : lighten(color, 60)
+                    ? utils_1.darken(color, 30)
+                    : utils_1.lighten(color, 60)
             } : {
                 backgroundColor: active
                     ? (colorSystem === 'dark-content'
-                        ? darken(color, 3)
-                        : darken(color, 10))
+                        ? utils_1.darken(color, 3)
+                        : utils_1.darken(color, 10))
                     : color
             })
         },
         style
     ]} {...restRrops}>
-        <Text style={{
+        <react_native_1.Text style={{
         color: textColor,
         fontSize: textSize || fontSize,
         fontWeight: bold ? 'bold' : 'normal'
     }}>
           {children}
-        </Text>
-      </View>
-    </TouchableWithoutFeedback>);
+        </react_native_1.Text>
+      </react_native_1.View>
+    </react_native_1.TouchableWithoutFeedback>);
 });
