@@ -1,9 +1,14 @@
-import React from 'react';
-import { Animated, Dimensions, Keyboard, KeyboardAvoidingView, PanResponder, Platform, StyleSheet, View } from 'react-native';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
-const WINDOW_HEIGHT = Dimensions.get('window').height;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(require("react"));
+const react_native_1 = require("react-native");
+const react_native_iphone_x_helper_1 = require("react-native-iphone-x-helper");
+const WINDOW_HEIGHT = react_native_1.Dimensions.get('window').height;
 const useNativeDriver = true;
-const styles = StyleSheet.create({
+const styles = react_native_1.StyleSheet.create({
     roundedEdges: {
         borderTopLeftRadius: 18,
         borderTopRightRadius: 18,
@@ -15,7 +20,7 @@ const styles = StyleSheet.create({
         elevation: 20
     },
 });
-export default class BottomDrawer extends React.PureComponent {
+class BottomDrawer extends react_1.default.PureComponent {
     constructor(props) {
         super(props);
         this.keyboardWillShow = (event) => {
@@ -60,7 +65,7 @@ export default class BottomDrawer extends React.PureComponent {
             x: 0,
             y: WINDOW_HEIGHT - this.props.bottomOffset
         };
-        this.keyboardSafeArea = getBottomSpace();
+        this.keyboardSafeArea = react_native_iphone_x_helper_1.getBottomSpace();
         this.state = {
             currentTranslate: this.props.startUp ? this.translate1 : this.translate2,
             keyboardOn: false,
@@ -69,39 +74,39 @@ export default class BottomDrawer extends React.PureComponent {
             headerBarHeight: 0,
             bottomVisible: true
         };
-        this.position = new Animated.ValueXY(this.state.currentTranslate);
-        this.panResponder = PanResponder.create({
+        this.position = new react_native_1.Animated.ValueXY(this.state.currentTranslate);
+        this.panResponder = react_native_1.PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onPanResponderMove: this.handlePanResponderMove,
             onPanResponderRelease: this.handlePanResponderRelease
         });
     }
     componentDidMount() {
-        this.keyboardWillShowSub = Platform.OS === 'ios'
-            ? Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
-            : Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
-        this.keyboardWillHideSub = Platform.OS === 'ios'
-            ? Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
-            : Keyboard.addListener('keyboardDidHide', this.keyboardWillHide);
+        this.keyboardWillShowSub = react_native_1.Platform.OS === 'ios'
+            ? react_native_1.Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
+            : react_native_1.Keyboard.addListener('keyboardDidShow', this.keyboardWillShow);
+        this.keyboardWillHideSub = react_native_1.Platform.OS === 'ios'
+            ? react_native_1.Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
+            : react_native_1.Keyboard.addListener('keyboardDidHide', this.keyboardWillHide);
     }
     componentWillUnmount() {
         this.keyboardWillShowSub.remove();
         this.keyboardWillHideSub.remove();
     }
     _getContentHeight() {
-        return Platform.select({
+        return react_native_1.Platform.select({
             ios: WINDOW_HEIGHT - this.translate1.y - this.state.headerBarHeight - this.state.bottomBarHeight,
             android: WINDOW_HEIGHT - this.translate1.y - this.state.headerBarHeight - this.state.bottomBarHeight,
         });
     }
     render() {
-        return (<KeyboardAvoidingView behavior="padding" style={{
-            ...StyleSheet.absoluteFillObject,
+        return (<react_native_1.KeyboardAvoidingView behavior="padding" style={{
+            ...react_native_1.StyleSheet.absoluteFillObject,
             overflow: 'hidden',
             backgroundColor: 'transparent'
         }} pointerEvents="box-none">
-        <Animated.View onStartShouldSetResponder={() => {
-            Keyboard.dismiss();
+        <react_native_1.Animated.View onStartShouldSetResponder={() => {
+            react_native_1.Keyboard.dismiss();
         }} shouldRasterizeIOS={true} renderToHardwareTextureAndroid={true} style={[
             { transform: this.position.getTranslateTransform() },
             {
@@ -109,20 +114,20 @@ export default class BottomDrawer extends React.PureComponent {
             },
             this.props.roundedEdges ? styles.roundedEdges : null,
             this.props.shadow ? styles.shadow : null,
-            StyleSheet.absoluteFillObject,
+            react_native_1.StyleSheet.absoluteFillObject,
         ]}>
-          <View onLayout={(e) => {
+          <react_native_1.View onLayout={(e) => {
             this.setState({ headerBarHeight: e.nativeEvent.layout.height });
         }} style={[
             this.props.roundedEdges ? styles.roundedEdges : null,
         ]} {...this.panResponder.panHandlers}>
             {this.props.renderHeader()}
-          </View>
-          <View style={{ height: this._getContentHeight() }}>
+          </react_native_1.View>
+          <react_native_1.View style={{ height: this._getContentHeight() }}>
             {this.props.children}
-          </View>
-        </Animated.View>
-        {this.props.renderBottomBar && this.state.bottomVisible && (<Animated.View onLayout={(e) => {
+          </react_native_1.View>
+        </react_native_1.Animated.View>
+        {this.props.renderBottomBar && this.state.bottomVisible && (<react_native_1.Animated.View onLayout={(e) => {
             this.setState({ bottomBarHeight: e.nativeEvent.layout.height });
         }} style={{
             position: 'absolute',
@@ -130,12 +135,12 @@ export default class BottomDrawer extends React.PureComponent {
             left: 0,
             right: 0,
             backgroundColor: this.props.backgroundColor,
-            paddingBottom: Platform.OS === 'android' ? 0 : this.state.keyboardHeight,
+            paddingBottom: react_native_1.Platform.OS === 'android' ? 0 : this.state.keyboardHeight,
             elevation: 20
         }}>
               {this.props.renderBottomBar()}
-            </Animated.View>)}
-      </KeyboardAvoidingView>);
+            </react_native_1.Animated.View>)}
+      </react_native_1.KeyboardAvoidingView>);
     }
     swipeInBounds(gesture) {
         return this.state.currentTranslate.y + gesture.dy > this.translate1.y;
@@ -144,19 +149,20 @@ export default class BottomDrawer extends React.PureComponent {
         return Math.min(Math.sqrt(gesture.dy * -1), WINDOW_HEIGHT);
     }
     transitionTo(position) {
-        Animated.spring(this.position, {
+        react_native_1.Animated.spring(this.position, {
             toValue: position,
             useNativeDriver
         }).start();
         this.setState({ currentTranslate: position });
     }
     resetPosition() {
-        Animated.spring(this.position, {
+        react_native_1.Animated.spring(this.position, {
             toValue: this.state.currentTranslate,
             useNativeDriver
         }).start();
     }
 }
+exports.default = BottomDrawer;
 BottomDrawer.defaultProps = {
     startUp: true,
     backgroundColor: '#ffffff',
