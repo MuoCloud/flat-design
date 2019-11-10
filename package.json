@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuoCloud/flat-design.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
