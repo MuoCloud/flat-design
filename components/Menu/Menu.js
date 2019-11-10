@@ -1,30 +1,18 @@
-"use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importStar(require("react"));
-const react_native_1 = require("react-native");
-const react_native_iphone_x_helper_1 = require("react-native-iphone-x-helper");
-const Modal_1 = __importDefault(require("../Modal"));
-const Portal_1 = __importDefault(require("../Portal"));
-exports.default = react_1.memo(react_1.forwardRef((props, ref) => {
+import React, { forwardRef, memo, useCallback, useImperativeHandle, useMemo, useState } from 'react';
+import { Platform, TouchableWithoutFeedback, View } from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import Modal from '../Modal';
+import Portal from '../Portal';
+export default memo(forwardRef((props, ref) => {
     const { renderItem, children, position = 'top-right' } = props;
-    const [modalVisible, setModalVisible] = react_1.useState(false);
-    const show = react_1.useCallback(() => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const show = useCallback(() => {
         setModalVisible(true);
     }, []);
-    const hide = react_1.useCallback(() => {
+    const hide = useCallback(() => {
         setModalVisible(false);
     }, []);
-    const positionStyle = react_1.useMemo(() => {
+    const positionStyle = useMemo(() => {
         if (position === 'top-right') {
             return {
                 alignItems: 'flex-end',
@@ -50,31 +38,31 @@ exports.default = react_1.memo(react_1.forwardRef((props, ref) => {
             };
         }
     }, []);
-    react_1.useImperativeHandle(ref, () => ({
+    useImperativeHandle(ref, () => ({
         show,
         hide
     }));
-    return (<react_native_1.View ref={this.setContainerRef} collapsable={false}>
-      <react_native_1.View>{renderItem}</react_native_1.View>
+    return (<View ref={this.setContainerRef} collapsable={false}>
+      <View>{renderItem}</View>
 
-      <Portal_1.default>
-        <Modal_1.default visible={modalVisible} onDismiss={hide} contentContainerStyle={{
+      <Portal>
+        <Modal visible={modalVisible} onDismiss={hide} contentContainerStyle={{
         flex: 1,
-        paddingTop: react_native_1.Platform.OS === 'android' ? react_native_iphone_x_helper_1.getStatusBarHeight() : 0
+        paddingTop: Platform.OS === 'android' ? getStatusBarHeight() : 0
     }}>
-          <react_native_1.TouchableWithoutFeedback onPress={hide}>
-            <react_native_1.View style={[{ flex: 1 }, positionStyle]}>
-              <react_native_1.View style={{
+          <TouchableWithoutFeedback onPress={hide}>
+            <View style={[{ flex: 1 }, positionStyle]}>
+              <View style={{
         backgroundColor: 'white',
         borderRadius: 4,
         margin: 10,
         overflow: 'hidden'
     }}>
                 {children}
-              </react_native_1.View>
-            </react_native_1.View>
-          </react_native_1.TouchableWithoutFeedback>
-        </Modal_1.default>
-      </Portal_1.default>
-    </react_native_1.View>);
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
+      </Portal>
+    </View>);
 }));

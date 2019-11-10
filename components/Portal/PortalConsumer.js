@@ -1,10 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-class PortalConsumer extends react_1.default.PureComponent {
+import React from 'react';
+export default class PortalConsumer extends React.PureComponent {
     async componentDidMount() {
         this._checkManager();
         await Promise.resolve();
@@ -27,4 +22,3 @@ class PortalConsumer extends react_1.default.PureComponent {
         return null;
     }
 }
-exports.default = PortalConsumer;

@@ -1,13 +1,8 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const react_native_1 = require("react-native");
-const PortalManager_1 = __importDefault(require("./PortalManager"));
-exports.PortalContext = react_1.default.createContext(null);
-class PortalHost extends react_1.default.PureComponent {
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import PortalManager from './PortalManager';
+export const PortalContext = React.createContext(null);
+export default class PortalHost extends React.PureComponent {
     constructor() {
         super(...arguments);
         this.nextKey = 0;
@@ -70,22 +65,21 @@ class PortalHost extends react_1.default.PureComponent {
         }
     }
     render() {
-        return (<exports.PortalContext.Provider value={{
+        return (<PortalContext.Provider value={{
             mount: this.mount,
             update: this.update,
             unmount: this.unmount,
         }}>
         
-        <react_native_1.View style={styles.container} collapsable={false}>
+        <View style={styles.container} collapsable={false}>
           {this.props.children}
-        </react_native_1.View>
-        <PortalManager_1.default ref={this.setManager}/>
-      </exports.PortalContext.Provider>);
+        </View>
+        <PortalManager ref={this.setManager}/>
+      </PortalContext.Provider>);
     }
 }
-exports.default = PortalHost;
 PortalHost.displayName = 'Portal.Host';
-const styles = react_native_1.StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
