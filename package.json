@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "bundledDependencies": [
+    "react"
+  ],
   "peerDependencies": {
     "@eva-design/eva": "^1.2.0",
     "@expo/vector-icons": "^10.0.0",
@@ -35,7 +38,6 @@
     "@types/react-native": "^0.60.22",
     "lodash": "^4.17.15",
     "lottie-react-native": "~2.6.1",
-    "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-model": "^3.0.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
@@ -48,5 +50,8 @@
     "tslint": "^5.20.1",
     "tslint-react": "^4.1.0",
     "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "react": "16.8.3"
   }
 }

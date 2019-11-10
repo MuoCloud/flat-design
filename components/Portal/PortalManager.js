@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const react_native_1 = require("react-native");
-class PortalManager extends react_1.default.PureComponent {
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+export default class PortalManager extends React.PureComponent {
     constructor() {
         super(...arguments);
         this.state = {
@@ -29,9 +24,8 @@ class PortalManager extends react_1.default.PureComponent {
         }));
     }
     render() {
-        return this.state.portals.map(({ key, children }) => (<react_native_1.View key={key} collapsable={false} pointerEvents="box-none" style={react_native_1.StyleSheet.absoluteFill}>
+        return this.state.portals.map(({ key, children }) => (<View key={key} collapsable={false} pointerEvents="box-none" style={StyleSheet.absoluteFill}>
         {children}
-      </react_native_1.View>));
+      </View>));
     }
 }
-exports.default = PortalManager;
