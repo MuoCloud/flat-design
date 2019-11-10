@@ -1,9 +1,11 @@
-import React, { memo } from 'react';
-import { View } from 'react-native';
+import React, { memo, useCallback, useState } from 'react';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import FadeInView from './FadeInView';
+import { darken } from '../utils';
 export default memo((props) => {
-    const { flex, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, fadeIn, enableBottomSpace, style, ...restProps } = props;
+    const { flex, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, ...restProps } = props;
+    const activeColor = props.activeColor ||
+        darken(color === 'transparent' ? '#ffffff' : color, 4);
     const verticalAlignValue = {
         top: 'flex-start',
         middle: 'center',
@@ -14,10 +16,12 @@ export default memo((props) => {
         center: 'center',
         right: 'flex-end'
     }[align];
-    const Component = fadeIn ? FadeInView : View;
-    return (<Component style={[
+    const [active, setActive] = useState(false);
+    const onPressIn = useCallback(() => setActive(true), []);
+    const onPressOut = useCallback(() => setActive(false), []);
+    const finalStyle = [
         {
-            backgroundColor: color,
+            backgroundColor: (onPress && active) ? activeColor : color,
             ...(flex && { flex }),
             ...(row && {
                 flexDirection: 'row',
@@ -45,5 +49,11 @@ export default memo((props) => {
             borderRadius: radius
         },
         style
-    ]} {...restProps}/>);
+    ];
+    if (onPress) {
+        return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut} style={finalStyle} {...restProps}/>);
+    }
+    else {
+        return (<View style={finalStyle} {...restProps}/>);
+    }
 });

@@ -1,11 +1,19 @@
-import React, { memo } from 'react'
-import { View, ViewProps } from 'react-native'
+import React, { memo, useCallback, useState } from 'react'
+import {
+  GestureResponderEvent,
+  StyleProp,
+  TouchableWithoutFeedback,
+  View,
+  ViewProps,
+  ViewStyle
+} from 'react-native'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
-import FadeInView from './FadeInView'
+import { darken } from '../utils'
 
 interface Props extends ViewProps {
   flex?: number
   color?: string
+  activeColor?: string
   row?: boolean
   column?: boolean
   verticalAlign?: 'top' | 'middle' | 'bottom'
@@ -13,8 +21,8 @@ interface Props extends ViewProps {
   radius?: number
   padding?: number
   margin?: number
-  fadeIn?: boolean
   enableBottomSpace?: boolean
+  onPress?: (event: GestureResponderEvent) => void
   children?: React.ReactNode
 }
 
@@ -29,11 +37,14 @@ export default memo((props: Props) => {
     radius = 0,
     padding = 0,
     margin = 0,
-    fadeIn,
     enableBottomSpace,
+    onPress,
     style,
     ...restProps
   } = props
+
+  const activeColor = props.activeColor ||
+    darken(color === 'transparent' ? '#ffffff' : color, 4)
 
   const verticalAlignValue = {
     top: 'flex-start',
@@ -47,42 +58,56 @@ export default memo((props: Props) => {
     right: 'flex-end'
   }[align] as 'flex-start' | 'center' | 'flex-end'
 
-  const Component = fadeIn ? FadeInView : View
+  // Touchable effect
+  const [active, setActive] = useState(false)
+  const onPressIn = useCallback(() => setActive(true), [])
+  const onPressOut = useCallback(() => setActive(false), [])
 
-  return (
-    <Component
-      style={[
-        {
-          backgroundColor: color,
-          ...(flex && { flex }),
-          ...(row && {
-            flexDirection: 'row',
-            ...(verticalAlign && {
-              alignItems: verticalAlignValue
-            }),
-            ...(align && {
-              justifyContent: alignValue
-            })
-          }),
-          ...((column || (!column && !row)) && {
-            flexDirection: 'column',
-            ...(align && {
-              alignItems: alignValue
-            }),
-            ...(verticalAlign && {
-              justifyContent: verticalAlignValue
-            })
-          }),
-          padding,
-          ...(enableBottomSpace && {
-            paddingBottom: (padding || 0) + getBottomSpace()
-          }),
-          margin,
-          borderRadius: radius
-        },
-        style
-      ]}
-      {...restProps}
-    />
-  )
+  const finalStyle: StyleProp<ViewStyle> = [
+    {
+      backgroundColor: (onPress && active) ? activeColor : color,
+      ...(flex && { flex }),
+      ...(row && {
+        flexDirection: 'row',
+        ...(verticalAlign && {
+          alignItems: verticalAlignValue
+        }),
+        ...(align && {
+          justifyContent: alignValue
+        })
+      }),
+      ...((column || (!column && !row)) && {
+        flexDirection: 'column',
+        ...(align && {
+          alignItems: alignValue
+        }),
+        ...(verticalAlign && {
+          justifyContent: verticalAlignValue
+        })
+      }),
+      padding,
+      ...(enableBottomSpace && {
+        paddingBottom: (padding || 0) + getBottomSpace()
+      }),
+      margin,
+      borderRadius: radius
+    },
+    style
+  ]
+
+  if (onPress) {
+    return (
+      <TouchableWithoutFeedback
+        onPress={onPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        style={finalStyle}
+        {...restProps}
+      />
+    )
+  } else {
+    return (
+      <View style={finalStyle} {...restProps} />
+    )
+  }
 })

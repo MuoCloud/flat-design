@@ -1,17 +1,11 @@
-import React, { memo, useCallback, useState } from 'react'
-import {
-  GestureResponderEvent,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-  ViewStyle
-} from 'react-native'
+import React, { memo } from 'react'
+import { GestureResponderEvent, Text, ViewStyle } from 'react-native'
 import Icon from './Icon'
+import View from './View'
 
 interface Props {
   color?: string
   backgroundColor?: string
-  activeBackgroundColor?: string
   title: string
   onPress?: (event: GestureResponderEvent) => void
   style?: ViewStyle
@@ -21,52 +15,41 @@ export default memo((props: Props) => {
   const {
     color = 'black',
     backgroundColor = '#ffffff',
-    activeBackgroundColor = '#f9f9f9',
     title,
     onPress,
     style = {}
   } = props
 
-  // Touchable effect
-  const [active, setActive] = useState(false)
-  const onPressIn = useCallback(() => setActive(true), [])
-  const onPressOut = useCallback(() => setActive(false), [])
-
   return (
-    <TouchableWithoutFeedback
+    <View
       onPress={onPress}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}
+      color={backgroundColor}
+      style={[
+        {
+          paddingHorizontal: 20,
+          paddingVertical: 15,
+          flexDirection: 'row',
+          alignItems: 'center'
+        },
+        style
+      ]}
     >
-      <View
-        style={[
-          {
-            paddingHorizontal: 20,
-            paddingVertical: 15,
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: active ? activeBackgroundColor : backgroundColor
-          },
-          style
-        ]}
+      <Text
+        style={{
+          fontSize: 16,
+          color
+        }}
       >
-        <Text
-          style={{
-            fontSize: 16,
-            color
-          }}
-        >
-          {title}
-        </Text>
+        {title}
+      </Text>
 
-        <View style={{ marginLeft: 'auto' }}>
-          <Icon
-            name="arrow-ios-forward-outline"
-            color="black"
-            size={20}
-          />
-        </View>
+      <View style={{ marginLeft: 'auto' }}>
+        <Icon
+          name="arrow-ios-forward-outline"
+          color="black"
+          size={20}
+        />
       </View>
-    </TouchableWithoutFeedback>
+    </View>
   )
 })

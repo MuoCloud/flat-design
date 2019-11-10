@@ -3,7 +3,6 @@ import { GestureResponderEvent, ViewStyle } from 'react-native';
 interface Props {
     color?: string;
     backgroundColor?: string;
-    activeBackgroundColor?: string;
     title: string;
     onPress?: (event: GestureResponderEvent) => void;
     style?: ViewStyle;

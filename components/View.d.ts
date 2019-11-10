@@ -1,8 +1,9 @@
 import React from 'react';
-import { ViewProps } from 'react-native';
+import { GestureResponderEvent, ViewProps } from 'react-native';
 interface Props extends ViewProps {
     flex?: number;
     color?: string;
+    activeColor?: string;
     row?: boolean;
     column?: boolean;
     verticalAlign?: 'top' | 'middle' | 'bottom';
@@ -10,8 +11,8 @@ interface Props extends ViewProps {
     radius?: number;
     padding?: number;
     margin?: number;
-    fadeIn?: boolean;
     enableBottomSpace?: boolean;
+    onPress?: (event: GestureResponderEvent) => void;
     children?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<(props: Props) => JSX.Element>;
