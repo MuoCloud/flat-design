@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getContentColorSystem = (color) => {
+export const getContentColorSystem = (color) => {
     const { r, g, b } = (() => {
         if (color.match(/^rgb/)) {
             const matches = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
@@ -29,7 +27,7 @@ exports.getContentColorSystem = (color) => {
         return 'light-content';
     }
 };
-exports.adjustBrightness = (col, amt) => {
+export const adjustBrightness = (col, amt) => {
     let usePound = false;
     if (col[0] === '#') {
         col = col.slice(1);
@@ -64,16 +62,16 @@ exports.adjustBrightness = (col, amt) => {
     const BB = ((B.toString(16).length === 1) ? '0' + B.toString(16) : B.toString(16));
     return (usePound ? '#' : '') + RR + GG + BB;
 };
-exports.darken = (color, amt) => exports.adjustBrightness(color, -amt);
-exports.lighten = (color, amt) => exports.adjustBrightness(color, amt);
-exports.themeColorSeq = (name, color) => {
+export const darken = (color, amt) => adjustBrightness(color, -amt);
+export const lighten = (color, amt) => adjustBrightness(color, amt);
+export const themeColorSeq = (name, color) => {
     const colors = {};
     colors[`color-${name}-500`] = color;
     for (let i = 400, j = 10; i >= 0; i -= 100, j += 10) {
-        colors[`color-${name}-${i}`] = exports.lighten(color, j);
+        colors[`color-${name}-${i}`] = lighten(color, j);
     }
     for (let i = 600, j = 10; i <= 900; i += 100, j += 10) {
-        colors[`color-${name}-${i}`] = exports.darken(color, j);
+        colors[`color-${name}-${i}`] = darken(color, j);
     }
     return colors;
 };
