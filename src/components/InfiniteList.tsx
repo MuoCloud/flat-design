@@ -20,6 +20,7 @@ import {
   ViewStyle
 } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
+import listLoading from '../assets/lottie/list_loading.json'
 import FadeInView from './FadeInView'
 
 type DataPipe = (list: any[], data: any[]) => any[]
@@ -122,7 +123,7 @@ export default memo(forwardRef((props: Props, ref: any) => {
           height: 150
         }}
         autoPlay={true}
-        source={require('../assets/lottie/list_loading.json')}
+        source={listLoading as any}
       />
     </View>
   ) : <></>, [isBusy])

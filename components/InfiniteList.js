@@ -3,6 +3,7 @@ import LottieView from 'lottie-react-native';
 import React, { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { RefreshControl, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import listLoading from '../assets/lottie/list_loading.json';
 import FadeInView from './FadeInView';
 export const defaultPipe = (list, data) => uniqBy([...list, ...data], '_id');
 export const invertedPipe = (list, data) => uniqBy([...data, ...list], '_id');
@@ -42,7 +43,7 @@ export default memo(forwardRef((props, ref) => {
       <LottieView style={{
         width: 150,
         height: 150
-    }} autoPlay={true} source={require('../assets/lottie/list_loading.json')}/>
+    }} autoPlay={true} source={listLoading}/>
     </View>) : <></>, [isBusy]);
     useEffect(() => {
         next();

@@ -1,6 +1,7 @@
 import LottieView from 'lottie-react-native';
 import React, { memo } from 'react';
 import { View } from 'react-native';
+import loading from '../assets/lottie/loading.json';
 import Modal from './Modal';
 import Portal from './Portal';
 export default memo((props) => {
@@ -16,7 +17,7 @@ export default memo((props) => {
           <LottieView style={{
         width: 120,
         height: 120
-    }} autoPlay={true} source={require('../assets/lottie/loading.json')}/>
+    }} autoPlay={true} source={loading}/>
         </View>
       </Modal>
     </Portal>);

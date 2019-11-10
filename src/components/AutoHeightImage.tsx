@@ -2,6 +2,7 @@ import LottieView from 'lottie-react-native'
 import React, { useCallback, useState } from 'react'
 import { View } from 'react-native'
 import AutoHeightImage, { AutoHeightImageProps } from 'react-native-auto-height-image'
+import imageLoading from '../assets/lottie/image_loading.json'
 
 export default (props: AutoHeightImageProps) => {
   const { onHeightChange, ...restProps } = props
@@ -28,7 +29,7 @@ export default (props: AutoHeightImageProps) => {
                 height: 150
               }}
               autoPlay={true}
-              source={require('../assets/lottie/image_loading.json')}
+              source={imageLoading as any}
             />
           </View>
         )
