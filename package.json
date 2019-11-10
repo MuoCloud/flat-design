@@ -12,9 +12,6 @@
   },
   "author": "",
   "license": "ISC",
-  "bundledDependencies": [
-    "react"
-  ],
   "peerDependencies": {
     "@eva-design/eva": "^1.2.0",
     "@expo/vector-icons": "^10.0.0",
@@ -50,8 +47,5 @@
     "tslint": "^5.20.1",
     "tslint-react": "^4.1.0",
     "typescript": "^3.7.2"
-  },
-  "dependencies": {
-    "react": "16.8.3"
   }
 }
