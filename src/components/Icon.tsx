@@ -15,11 +15,15 @@ interface Props {
 export default memo((props: Props) => {
   const { size = 20, color = 'black', name, pack = 'eva', onPress, style } = props
 
-  const iconComponent = {
-    eva: <Icon style={style} name={name} height={size} width={size} fill={color} />,
-    ion: <Ionicons style={style} name={name} size={size} color={color} />,
-    md: <MaterialCommunityIcons style={style} name={name} size={size} color={color} />
-  }[pack]
+  const iconComponent = (() => {
+    if (pack === 'eva') {
+      return <Icon style={style} name={name} height={size} width={size} fill={color} />
+    } else if (pack === 'ion') {
+      return <Ionicons style={style} name={name} size={size} color={color} />
+    } else if (pack === 'md') {
+      return <MaterialCommunityIcons style={style} name={name} size={size} color={color} />
+    }
+  })()
 
   if (onPress) {
     return (
