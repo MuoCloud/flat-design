@@ -1,6 +1,8 @@
 import React from 'react';
 import { LayoutChangeEvent, ListRenderItem, NativeScrollEvent, NativeSyntheticEvent, ViewStyle } from 'react-native';
 declare type DataPipe = (list: any[], data: any[]) => any[];
+export declare const defaultPipe: (list: any[], data: any[]) => any;
+export declare const invertedPipe: (list: any[], data: any[]) => any;
 interface Props {
     dataProvider: CursorDataProvider | OffsetDataProvider;
     pollingDataProvider?: CursorDataProvider | OffsetDataProvider;
@@ -24,8 +26,8 @@ interface Props {
     dataPipe?: DataPipe;
     horizontal?: boolean;
     onRefresh?: () => void;
+    enableBottomSpace?: boolean;
+    contentPaddingBottom?: number;
 }
-export declare const defaultPipe: (list: any[], data: any[]) => any;
-export declare const invertedPipe: (list: any[], data: any[]) => any;
 declare const _default: React.MemoExoticComponent<React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>>;
 export default _default;

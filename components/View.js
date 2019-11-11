@@ -1,9 +1,11 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { darken } from '../utils';
+import Separator from './Separator';
+const BOTTOM_SPACE = getBottomSpace();
 export default memo((props) => {
-    const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, ...restProps } = props;
+    const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, children, ...restProps } = props;
     const activeColor = props.activeColor ||
         color === 'transparent' ? 'transparent' : darken(color, 4);
     const verticalAlignValue = {
@@ -43,20 +45,21 @@ export default memo((props) => {
                 })
             }),
             padding,
-            ...(enableBottomSpace && {
-                paddingBottom: (padding || 0) + getBottomSpace()
-            }),
             margin,
             borderRadius: radius
         },
         style
     ];
+    const textComponent = useMemo(() => (<View style={finalStyle} {...restProps}>
+      {children}
+      {(enableBottomSpace && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}
+    </View>), [props]);
     if (onPress) {
         return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
-        <View style={finalStyle} {...restProps}/>
+        {textComponent}
       </TouchableWithoutFeedback>);
     }
     else {
-        return (<View style={finalStyle} {...restProps}/>);
+        return textComponent;
     }
 });

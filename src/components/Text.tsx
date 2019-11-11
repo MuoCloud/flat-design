@@ -24,7 +24,6 @@ export default memo((props: Props) => {
     bold,
     color = defaultColor,
     style,
-    children,
     ...restProps
   } = props
 
@@ -39,10 +38,9 @@ export default memo((props: Props) => {
         },
         style
       ]}
-      children={children}
       {...restProps}
     />
-  ), [children])
+  ), [props])
 
   if (onPress) {
     return (

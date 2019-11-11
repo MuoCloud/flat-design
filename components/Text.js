@@ -5,7 +5,7 @@ export const setDefaultTextColor = (color) => {
     defaultColor = color;
 };
 export default memo((props) => {
-    const { onPress, size = 14, lineHeight, bold, color = defaultColor, style, children, ...restProps } = props;
+    const { onPress, size = 14, lineHeight, bold, color = defaultColor, style, ...restProps } = props;
     const textComponent = useMemo(() => (<Text style={[
         {
             color,
@@ -14,7 +14,7 @@ export default memo((props) => {
             ...(bold && { fontWeight: 'bold' })
         },
         style
-    ]} children={children} {...restProps}/>), [children]);
+    ]} {...restProps}/>), [props]);
     if (onPress) {
         return (<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
         {textComponent}

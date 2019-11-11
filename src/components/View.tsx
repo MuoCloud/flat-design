@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useCallback, useMemo, useState } from 'react'
 import {
   GestureResponderEvent,
   StyleProp,
@@ -9,6 +9,9 @@ import {
 } from 'react-native'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
 import { darken } from '../utils'
+import Separator from './Separator'
+
+const BOTTOM_SPACE = getBottomSpace()
 
 interface Props extends ViewProps {
   flex?: number
@@ -42,6 +45,7 @@ export default memo((props: Props) => {
     enableBottomSpace,
     onPress,
     style,
+    children,
     ...restProps
   } = props
 
@@ -89,14 +93,25 @@ export default memo((props: Props) => {
         })
       }),
       padding,
-      ...(enableBottomSpace && {
-        paddingBottom: (padding || 0) + getBottomSpace()
-      }),
       margin,
       borderRadius: radius
     },
     style
   ]
+
+  const textComponent = useMemo(() => (
+    <View
+      style={finalStyle}
+      {...restProps}
+    >
+      {children}
+      {
+        (enableBottomSpace && BOTTOM_SPACE > 0) && (
+          <Separator height={BOTTOM_SPACE} />
+        )
+      }
+    </View>
+  ), [props])
 
   if (onPress) {
     return (
@@ -105,12 +120,10 @@ export default memo((props: Props) => {
         onPressIn={onPressIn}
         onPressOut={onPressOut}
       >
-        <View style={finalStyle} {...restProps} />
+        {textComponent}
       </TouchableWithoutFeedback>
     )
   } else {
-    return (
-      <View style={finalStyle} {...restProps} />
-    )
+    return textComponent
   }
 })

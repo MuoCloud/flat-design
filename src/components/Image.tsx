@@ -11,11 +11,10 @@ interface Props extends ImageProps {
 }
 
 export default memo((props: Props) => {
-  const { style, source, onPress, ...restProps } = props
+  const { style, onPress, ...restProps } = props
 
   const imageComponent = useMemo(() => (
     <Image
-      source={source}
       style={[
         {
           backgroundColor: '#eceff1'
@@ -24,7 +23,7 @@ export default memo((props: Props) => {
       ]}
       {...restProps}
     />
-  ), [source])
+  ), [props])
 
   if (onPress) {
     return (
