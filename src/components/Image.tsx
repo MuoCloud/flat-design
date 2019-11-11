@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import {
   GestureResponderEvent,
   Image,
@@ -13,7 +13,7 @@ interface Props extends ImageProps {
 export default memo((props: Props) => {
   const { style, onPress, ...restProps } = props
 
-  const imageComponent = useMemo(() => (
+  const imageComponent = (
     <Image
       style={[
         {
@@ -23,7 +23,7 @@ export default memo((props: Props) => {
       ]}
       {...restProps}
     />
-  ), [props])
+  )
 
   if (onPress) {
     return (

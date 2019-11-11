@@ -1,13 +1,13 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import { Image, TouchableWithoutFeedback } from 'react-native';
 export default memo((props) => {
     const { style, onPress, ...restProps } = props;
-    const imageComponent = useMemo(() => (<Image style={[
+    const imageComponent = (<Image style={[
         {
             backgroundColor: '#eceff1'
         },
         style
-    ]} {...restProps}/>), [props]);
+    ]} {...restProps}/>);
     if (onPress) {
         return (<TouchableWithoutFeedback onPress={onPress}>
         {imageComponent}

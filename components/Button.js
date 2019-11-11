@@ -28,7 +28,7 @@ export default memo((props) => {
     const activeColor = colorSystem === 'dark-content'
         ? darken(color, 3)
         : darken(color, 10);
-    return (<View align="center" verticalAlign="middle" color={disabled ? disabledColor : color} activeColor={activeColor} radius={round && 4} style={[
+    return (<View onPress={onPress} align="center" verticalAlign="middle" color={disabled ? disabledColor : color} activeColor={activeColor} radius={round && 4} style={[
         {
             height,
             paddingHorizontal

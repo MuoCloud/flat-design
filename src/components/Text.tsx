@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { GestureResponderEvent, Text, TextProps, TouchableOpacity } from 'react-native'
 
 interface Props extends TextProps {
@@ -27,7 +27,7 @@ export default memo((props: Props) => {
     ...restProps
   } = props
 
-  const textComponent = useMemo(() => (
+  const textComponent = (
     <Text
       style={[
         {
@@ -40,7 +40,7 @@ export default memo((props: Props) => {
       ]}
       {...restProps}
     />
-  ), [props])
+  )
 
   if (onPress) {
     return (

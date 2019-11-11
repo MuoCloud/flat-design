@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { darken } from '../utils';
@@ -50,16 +50,16 @@ export default memo((props) => {
         },
         style
     ];
-    const textComponent = useMemo(() => (<View style={finalStyle} {...restProps}>
+    const viewComponent = (<View style={finalStyle} {...restProps}>
       {children}
       {(enableBottomSpace && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}
-    </View>), [finalStyle, props]);
+    </View>);
     if (onPress) {
         return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
-        {textComponent}
+        {viewComponent}
       </TouchableWithoutFeedback>);
     }
     else {
-        return textComponent;
+        return viewComponent;
     }
 });

@@ -64,6 +64,7 @@ export default memo((props: Props) => {
 
   return (
     <View
+      onPress={onPress}
       align="center"
       verticalAlign="middle"
       color={disabled ? disabledColor : color}

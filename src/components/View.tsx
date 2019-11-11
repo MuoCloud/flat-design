@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import {
   GestureResponderEvent,
   StyleProp,
@@ -99,7 +99,7 @@ export default memo((props: Props) => {
     style
   ]
 
-  const textComponent = useMemo(() => (
+  const viewComponent = (
     <View
       style={finalStyle}
       {...restProps}
@@ -111,7 +111,7 @@ export default memo((props: Props) => {
         )
       }
     </View>
-  ), [finalStyle, props])
+  )
 
   if (onPress) {
     return (
@@ -120,10 +120,10 @@ export default memo((props: Props) => {
         onPressIn={onPressIn}
         onPressOut={onPressOut}
       >
-        {textComponent}
+        {viewComponent}
       </TouchableWithoutFeedback>
     )
   } else {
-    return textComponent
+    return viewComponent
   }
 })
