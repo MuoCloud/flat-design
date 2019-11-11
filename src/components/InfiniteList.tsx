@@ -20,10 +20,17 @@ import {
   ViewStyle
 } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
+import { getBottomSpace } from 'react-native-iphone-x-helper'
 import listLoading from '../assets/lottie/list_loading.json'
 import FadeInView from './FadeInView'
+import Separator from './Separator'
 
 type DataPipe = (list: any[], data: any[]) => any[]
+
+export const defaultPipe = (list: any[], data: any[]) => uniqBy([...list, ...data], '_id')
+export const invertedPipe = (list: any[], data: any[]) => uniqBy([...data, ...list], '_id')
+
+const BOTTOM_SPACE = getBottomSpace()
 
 interface Props {
   dataProvider: CursorDataProvider | OffsetDataProvider
@@ -48,10 +55,9 @@ interface Props {
   dataPipe?: DataPipe
   horizontal?: boolean
   onRefresh?: () => void
+  enableBottomSpace?: boolean
+  contentPaddingBottom?: number
 }
-
-export const defaultPipe = (list: any[], data: any[]) => uniqBy([...list, ...data], '_id')
-export const invertedPipe = (list: any[], data: any[]) => uniqBy([...data, ...list], '_id')
 
 export default memo(forwardRef((props: Props, ref: any) => {
   const {
@@ -72,7 +78,9 @@ export default memo(forwardRef((props: Props, ref: any) => {
     inverted,
     horizontal,
     dataPipe = defaultPipe,
-    onRefresh
+    onRefresh,
+    enableBottomSpace,
+    contentPaddingBottom
   } = props
 
   const [isBusy, setBusy] = useState(false)
@@ -125,6 +133,11 @@ export default memo(forwardRef((props: Props, ref: any) => {
         autoPlay={true}
         source={listLoading as any}
       />
+      {
+        (enableBottomSpace && !inverted && BOTTOM_SPACE > 0) && (
+          <Separator height={BOTTOM_SPACE} />
+        )
+      }
     </View>
   ) : <></>, [isBusy])
 
@@ -174,6 +187,9 @@ export default memo(forwardRef((props: Props, ref: any) => {
         {
           ...((!isBusy && list.length === 0) && {
             flex: 1
+          }),
+          ...(contentPaddingBottom && {
+            paddingBottom: contentPaddingBottom
           })
         },
         contentContainerStyle

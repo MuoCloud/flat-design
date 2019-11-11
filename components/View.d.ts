@@ -6,6 +6,7 @@ interface Props extends ViewProps {
     activeColor?: string;
     row?: boolean;
     column?: boolean;
+    wrap?: boolean;
     verticalAlign?: 'top' | 'middle' | 'bottom';
     align?: 'left' | 'center' | 'right';
     radius?: number;

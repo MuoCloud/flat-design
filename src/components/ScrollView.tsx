@@ -2,6 +2,9 @@ import React, { memo } from 'react'
 import { ScrollViewProps } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
+import Separator from './Separator'
+
+const BOTTOM_SPACE = getBottomSpace()
 
 interface Props extends ScrollViewProps {
   flex?: number
@@ -19,6 +22,7 @@ export default memo((props: Props) => {
     enableBottomSpace,
     style,
     contentContainerStyle,
+    children,
     ...restProps
   } = props
 
@@ -33,14 +37,18 @@ export default memo((props: Props) => {
       ]}
       contentContainerStyle={[
         {
-          ...(contentPadding && { padding: contentPadding }),
-          ...(enableBottomSpace && {
-            paddingBottom: (contentPadding || 0) + getBottomSpace()
-          })
+          ...(contentPadding && { padding: contentPadding })
         },
         contentContainerStyle
       ]}
       {...restProps}
-    />
+    >
+      {children}
+      {
+        (enableBottomSpace && BOTTOM_SPACE > 0) && (
+          <Separator height={BOTTOM_SPACE} />
+        )
+      }
+    </ScrollView>
   )
 })

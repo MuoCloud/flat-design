@@ -16,6 +16,7 @@ interface Props extends ViewProps {
   activeColor?: string
   row?: boolean
   column?: boolean
+  wrap?: boolean
   verticalAlign?: 'top' | 'middle' | 'bottom'
   align?: 'left' | 'center' | 'right'
   radius?: number
@@ -29,6 +30,7 @@ interface Props extends ViewProps {
 export default memo((props: Props) => {
   const {
     flex,
+    wrap,
     color = 'transparent',
     row,
     column,
@@ -67,6 +69,7 @@ export default memo((props: Props) => {
     {
       backgroundColor: (onPress && active) ? activeColor : color,
       ...(flex && { flex }),
+      ...(wrap && { flexWrap: 'wrap' }),
       ...(row && {
         flexDirection: 'row',
         ...(verticalAlign && {

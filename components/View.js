@@ -3,7 +3,7 @@ import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { darken } from '../utils';
 export default memo((props) => {
-    const { flex, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, ...restProps } = props;
+    const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, ...restProps } = props;
     const activeColor = props.activeColor ||
         color === 'transparent' ? 'transparent' : darken(color, 4);
     const verticalAlignValue = {
@@ -23,6 +23,7 @@ export default memo((props) => {
         {
             backgroundColor: (onPress && active) ? activeColor : color,
             ...(flex && { flex }),
+            ...(wrap && { flexWrap: 'wrap' }),
             ...(row && {
                 flexDirection: 'row',
                 ...(verticalAlign && {
