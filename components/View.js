@@ -53,7 +53,7 @@ export default memo((props) => {
     const textComponent = useMemo(() => (<View style={finalStyle} {...restProps}>
       {children}
       {(enableBottomSpace && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}
-    </View>), [props]);
+    </View>), [finalStyle, props]);
     if (onPress) {
         return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
         {textComponent}

@@ -111,7 +111,7 @@ export default memo((props: Props) => {
         )
       }
     </View>
-  ), [props])
+  ), [finalStyle, props])
 
   if (onPress) {
     return (
