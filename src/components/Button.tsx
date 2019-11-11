@@ -1,12 +1,11 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo } from 'react'
 import {
   GestureResponderEvent,
   Text,
-  TouchableWithoutFeedback,
-  View,
   ViewProps
 } from 'react-native'
 import { darken, getContentColorSystem, lighten } from '../utils'
+import View from './View'
 
 interface Props extends ViewProps {
   children: string
@@ -56,59 +55,38 @@ export default memo((props: Props) => {
 
   const textColor = props.textColor
     || (colorSystem === 'light-content' ? '#ffffff' : '#000000')
-
-  const [active, setActive] = useState(false)
-  const onPressIn = useCallback(() => setActive(true), [])
-  const onPressOut = useCallback(() => setActive(false), [])
+  const disabledColor = colorSystem === 'dark-content'
+    ? darken(color, 30)
+    : lighten(color, 60)
+  const activeColor = colorSystem === 'dark-content'
+    ? darken(color, 3)
+    : darken(color, 10)
 
   return (
-    <TouchableWithoutFeedback
-      onPress={event => {
-        if (!disabled) {
-          onPress(event)
-        }
-      }}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}
+    <View
+      align="center"
+      verticalAlign="middle"
+      color={disabled ? disabledColor : color}
+      activeColor={activeColor}
+      radius={round && 4}
+      style={[
+        {
+          height,
+          paddingHorizontal
+        },
+        style
+      ]}
+      {...restRrops}
     >
-      <View
-        style={[
-          {
-            justifyContent: 'center',
-            alignItems: 'center',
-            height,
-            paddingHorizontal,
-            ...(round && {
-              borderRadius: 4
-            }),
-            ...(disabled ? {
-              backgroundColor: colorSystem === 'dark-content'
-                ? darken(color, 30)
-                : lighten(color, 60)
-            } : {
-                backgroundColor: active
-                  ? (
-                    colorSystem === 'dark-content'
-                      ? darken(color, 3)
-                      : darken(color, 10)
-                  )
-                  : color
-              })
-          },
-          style
-        ]}
-        {...restRrops}
+      <Text
+        style={{
+          color: textColor,
+          fontSize: textSize || fontSize,
+          fontWeight: bold ? 'bold' : 'normal'
+        }}
       >
-        <Text
-          style={{
-            color: textColor,
-            fontSize: textSize || fontSize,
-            fontWeight: bold ? 'bold' : 'normal'
-          }}
-        >
-          {children}
-        </Text>
-      </View>
-    </TouchableWithoutFeedback>
+        {children}
+      </Text>
+    </View>
   )
 })
