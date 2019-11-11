@@ -30,6 +30,7 @@ export default memo((props: Props) => {
       color={color}
       onPress={onPress}
       align="center"
+      verticalAlign="middle"
       radius={15}
       style={[
         {
