@@ -1,6 +1,7 @@
 import React from 'react';
-import { TextProps } from 'react-native';
+import { GestureResponderEvent, TextProps } from 'react-native';
 interface Props extends TextProps {
+    onPress?: (event: GestureResponderEvent) => void;
     size?: number;
     lineHeight?: number;
     bold?: boolean;

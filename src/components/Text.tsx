@@ -1,7 +1,8 @@
-import React, { memo } from 'react'
-import { Text, TextProps } from 'react-native'
+import React, { memo, useMemo } from 'react'
+import { GestureResponderEvent, Text, TextProps, TouchableOpacity } from 'react-native'
 
 interface Props extends TextProps {
+  onPress?: (event: GestureResponderEvent) => void
   size?: number
   lineHeight?: number
   bold?: boolean
@@ -17,15 +18,17 @@ export const setDefaultTextColor = (color: string) => {
 
 export default memo((props: Props) => {
   const {
+    onPress,
     size = 14,
     lineHeight,
     bold,
     color = defaultColor,
     style,
+    children,
     ...restProps
   } = props
 
-  return (
+  const textComponent = useMemo(() => (
     <Text
       style={[
         {
@@ -36,7 +39,18 @@ export default memo((props: Props) => {
         },
         style
       ]}
+      children={children}
       {...restProps}
     />
-  )
+  ), [children])
+
+  if (onPress) {
+    return (
+      <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+        {textComponent}
+      </TouchableOpacity>
+    )
+  } else {
+    return textComponent
+  }
 })

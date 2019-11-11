@@ -1,17 +1,15 @@
 import React, { memo } from 'react'
-import {
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  TouchableOpacityProps
-} from 'react-native'
+import { GestureResponderEvent, TextStyle, ViewProps } from 'react-native'
+import Text from './Text'
+import View from './View'
 
-interface Props extends Partial<TouchableOpacityProps> {
+interface Props extends ViewProps {
   children: string
   textStyle?: TextStyle
   color?: string
   textColor?: string
   bold?: boolean
+  onPress?: (event: GestureResponderEvent) => void
 }
 
 export { Props as TagProps }
@@ -28,35 +26,28 @@ export default memo((props: Props) => {
   } = props
 
   return (
-    <TouchableOpacity
-      activeOpacity={onPress ? 0.8 : 1}
+    <View
+      color={color}
       onPress={onPress}
+      align="center"
+      radius={15}
       style={[
         {
-          backgroundColor: color,
           paddingHorizontal: 12,
           height: 26,
-          justifyContent: 'center',
-          borderRadius: 15
         },
         style
       ]}
     >
       <Text
-        style={[
-          {
-            color: textColor,
-            fontSize: 13,
-            lineHeight: 20,
-            ...(bold && {
-              fontWeight: 'bold'
-            })
-          },
-          textStyle
-        ]}
+        color={textColor}
+        size={13}
+        lineHeight={20}
+        bold={bold}
+        style={textStyle}
       >
         {children}
       </Text>
-    </TouchableOpacity>
+    </View>
   )
 })

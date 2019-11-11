@@ -1,5 +1,5 @@
-import React, { memo, useMemo } from 'react'
-import { GestureResponderEvent, ImageProps, TouchableWithoutFeedback } from 'react-native'
+import React, { memo } from 'react'
+import { GestureResponderEvent, ImageProps } from 'react-native'
 import Image from './Image'
 
 interface Props extends ImageProps {
@@ -8,12 +8,13 @@ interface Props extends ImageProps {
 }
 
 export default memo((props: Props) => {
-  const { style, onPress, size = 40, source, ...restProps } = props
-  const imageComponent = useMemo(() => (
+  const { style, onPress, size = 40, ...restProps } = props
+
+  return (
     <Image
+      onPress={onPress}
       height={size}
       width={size}
-      source={source}
       style={[
         {
           borderRadius: size / 2
@@ -22,15 +23,5 @@ export default memo((props: Props) => {
       ]}
       {...restProps}
     />
-  ), [source])
-
-  if (onPress) {
-    return (
-      <TouchableWithoutFeedback onPress={onPress}>
-        {imageComponent}
-      </TouchableWithoutFeedback>
-    )
-  } else {
-    return imageComponent
-  }
+  )
 })

@@ -1,11 +1,16 @@
 import LottieView from 'lottie-react-native'
 import React, { useCallback, useState } from 'react'
-import { View } from 'react-native'
+import { GestureResponderEvent } from 'react-native'
 import AutoHeightImage, { AutoHeightImageProps } from 'react-native-auto-height-image'
 import imageLoading from '../assets/lottie/image_loading.json'
+import View from './View'
 
-export default (props: AutoHeightImageProps) => {
-  const { onHeightChange, ...restProps } = props
+interface Props extends AutoHeightImageProps {
+  onPress: (event: GestureResponderEvent) => void
+}
+
+export default (props: Props) => {
+  const { onPress, onHeightChange, ...restProps } = props
   const [loaded, setLoaded] = useState(false)
 
   const onHeightChangeHandler = useCallback((height: number) => {
@@ -19,7 +24,10 @@ export default (props: AutoHeightImageProps) => {
   }, [loaded])
 
   return (
-    <View style={{ backgroundColor: '#eceff1' }}>
+    <View
+      onPress={onPress}
+      style={{ backgroundColor: '#eceff1' }}
+    >
       {
         !loaded && (
           <View style={{ alignItems: 'center' }}>

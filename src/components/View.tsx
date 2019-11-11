@@ -44,7 +44,7 @@ export default memo((props: Props) => {
   } = props
 
   const activeColor = props.activeColor ||
-    darken(color === 'transparent' ? '#ffffff' : color, 4)
+    color === 'transparent' ? 'transparent' : darken(color, 4)
 
   const verticalAlignValue = {
     top: 'flex-start',

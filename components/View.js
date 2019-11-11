@@ -5,7 +5,7 @@ import { darken } from '../utils';
 export default memo((props) => {
     const { flex, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, ...restProps } = props;
     const activeColor = props.activeColor ||
-        darken(color === 'transparent' ? '#ffffff' : color, 4);
+        color === 'transparent' ? 'transparent' : darken(color, 4);
     const verticalAlignValue = {
         top: 'flex-start',
         middle: 'center',

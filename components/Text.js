@@ -1,12 +1,12 @@
-import React, { memo } from 'react';
-import { Text } from 'react-native';
+import React, { memo, useMemo } from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 let defaultColor = 'black';
 export const setDefaultTextColor = (color) => {
     defaultColor = color;
 };
 export default memo((props) => {
-    const { size = 14, lineHeight, bold, color = defaultColor, style, ...restProps } = props;
-    return (<Text style={[
+    const { onPress, size = 14, lineHeight, bold, color = defaultColor, style, children, ...restProps } = props;
+    const textComponent = useMemo(() => (<Text style={[
         {
             color,
             fontSize: size,
@@ -14,5 +14,13 @@ export default memo((props) => {
             ...(bold && { fontWeight: 'bold' })
         },
         style
-    ]} {...restProps}/>);
+    ]} children={children} {...restProps}/>), [children]);
+    if (onPress) {
+        return (<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+        {textComponent}
+      </TouchableOpacity>);
+    }
+    else {
+        return textComponent;
+    }
 });
