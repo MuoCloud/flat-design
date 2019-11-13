@@ -109,11 +109,12 @@ export default memo((props: Props) => {
         <Text
           color={textColor}
           size={textSize}
-          lineHeight={height}
+          lineHeight={height + 0.5}
           bold={true}
           style={[
             {
-              marginLeft: 8
+              marginLeft: 8,
+              height
             },
             titleStyle
           ]}

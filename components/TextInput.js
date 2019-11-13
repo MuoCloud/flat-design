@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react';
 import { Platform, TextInput } from 'react-native';
 export default memo(forwardRef((props, ref) => {
-    const { style, useSingleLinePadding, multiline, ...restRrops } = props;
+    const { style, useSingleLinePadding, placeholderTextColor = '#a6b0c3', multiline, ...restRrops } = props;
     return (<TextInput ref={ref} style={[
         {
             paddingHorizontal: 12.5,

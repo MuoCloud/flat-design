@@ -6,7 +6,13 @@ interface Props extends TextInputProps {
 }
 
 export default memo(forwardRef((props: Props, ref: Ref<TextInput>) => {
-  const { style, useSingleLinePadding, multiline, ...restRrops } = props
+  const {
+    style,
+    useSingleLinePadding,
+    placeholderTextColor = '#a6b0c3',
+    multiline,
+    ...restRrops
+  } = props
 
   return (
     <TextInput
