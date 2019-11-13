@@ -8,11 +8,11 @@ export default memo((props) => {
         width: height
     }}>
       <View onPress={onPress} activeColor={activeColor} align="center" verticalAlign="middle" style={{
-        height: height - 7,
-        width: height - 7,
-        borderRadius: (height - 7) / 2
+        height: height * 0.85,
+        width: height * 0.85,
+        borderRadius: height * 0.85 / 2
     }}>
-        <Icon name={icon} size={size + 4} color={color}/>
+        <Icon name={icon} size={size + 3} color={color}/>
       </View>
     </View>);
 });
