@@ -34,7 +34,7 @@ interface Props {
 export default memo((props: Props) => {
   const {
     color = '#ffffff',
-    borderColor = '#edeff2',
+    borderColor = '#eceff1',
     border = true,
     height = 43,
     style,
