@@ -6,8 +6,10 @@ import NavbarAction from './NavbarAction';
 import Text from './Text';
 import View from './View';
 export default memo((props) => {
-    const { color = '#ffffff', borderColor = '#edeff2', border = true, height = 43, title, textSize = 16, leftControls, rightControls, back, onBack } = props;
-    const contentColorSystem = getContentColorSystem(color);
+    const { color = '#ffffff', borderColor = '#edeff2', border = true, height = 43, style, title, titleStyle, textSize = 16, leftControls, rightControls, back, onBack } = props;
+    const contentColorSystem = color !== 'transparent'
+        ? getContentColorSystem(color)
+        : 'light-content';
     const barStyle = props.barStyle || contentColorSystem;
     const textColor = props.textColor ||
         (contentColorSystem === 'dark-content' ? '#000000' : '#ffffff');
@@ -22,13 +24,16 @@ export default memo((props) => {
             : controls;
         return statelessControls;
     }, [props]);
-    return (<View color={color} verticalAlign="bottom" style={{
-        paddingTop: getStatusBarHeight(true),
-        ...(border && {
-            borderBottomWidth: 1,
-            borderBottomColor: borderColor
-        })
-    }}>
+    return (<View color={color} verticalAlign="bottom" style={[
+        {
+            paddingTop: getStatusBarHeight(true),
+            ...(border && {
+                borderBottomWidth: 1,
+                borderBottomColor: borderColor
+            })
+        },
+        style
+    ]}>
       <StatusBar barStyle={barStyle}/>
 
       <View row={true} verticalAlign="middle" style={{
@@ -41,7 +46,12 @@ export default memo((props) => {
           {leftControls && makeControls(leftControls)}
         </View>
 
-        <Text color={textColor} size={textSize} lineHeight={height} bold={true} children={title}/>
+        <Text color={textColor} size={textSize} lineHeight={height} bold={true} style={[
+        {
+            marginLeft: 8
+        },
+        titleStyle
+    ]} children={title}/>
 
         <View row={true} verticalAlign="middle" style={{ marginLeft: 'auto' }}>
           {rightControls && makeControls(rightControls)}

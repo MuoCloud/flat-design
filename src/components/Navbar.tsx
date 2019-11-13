@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import { StatusBar, TextStyle } from 'react-native'
+import { StatusBar, TextStyle, ViewStyle } from 'react-native'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import { getContentColorSystem } from '../utils'
 import NavbarAction from './NavbarAction'
@@ -22,6 +22,7 @@ interface Props {
   textSize?: number
   barStyle?: 'light-content' | 'dark-content'
   height?: number
+  style?: ViewStyle
   title?: string
   titleStyle?: TextStyle
   leftControls?: Controls
@@ -36,6 +37,7 @@ export default memo((props: Props) => {
     borderColor = '#edeff2',
     border = true,
     height = 43,
+    style,
     title,
     titleStyle,
     textSize = 16,
@@ -71,13 +73,16 @@ export default memo((props: Props) => {
     <View
       color={color}
       verticalAlign="bottom"
-      style={{
-        paddingTop: getStatusBarHeight(true),
-        ...(border && {
-          borderBottomWidth: 1,
-          borderBottomColor: borderColor
-        })
-      }}
+      style={[
+        {
+          paddingTop: getStatusBarHeight(true),
+          ...(border && {
+            borderBottomWidth: 1,
+            borderBottomColor: borderColor
+          })
+        },
+        style
+      ]}
     >
       <StatusBar barStyle={barStyle} />
 

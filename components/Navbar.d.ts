@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextStyle, ViewStyle } from 'react-native';
 interface ControlProps {
     color?: string;
     height?: number;
@@ -13,7 +14,9 @@ interface Props {
     textSize?: number;
     barStyle?: 'light-content' | 'dark-content';
     height?: number;
+    style?: ViewStyle;
     title?: string;
+    titleStyle?: TextStyle;
     leftControls?: Controls;
     rightControls?: Controls;
     back?: boolean;
