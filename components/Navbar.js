@@ -46,7 +46,7 @@ export default memo((props) => {
           {leftControls && makeControls(leftControls)}
         </View>
 
-        <Text color={textColor} size={textSize} lineHeight={height} bold={true} style={[
+        <Text color={textColor} size={textSize} lineHeight={textSize + 8} bold={true} style={[
         {
             marginLeft: 8
         },

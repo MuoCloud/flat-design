@@ -109,7 +109,7 @@ export default memo((props: Props) => {
         <Text
           color={textColor}
           size={textSize}
-          lineHeight={height}
+          lineHeight={textSize + 8}
           bold={true}
           style={[
             {
