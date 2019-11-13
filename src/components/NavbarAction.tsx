@@ -37,9 +37,9 @@ export default memo((props: Props) => {
         align="center"
         verticalAlign="middle"
         style={{
-          height: height * 0.85,
-          width: height * 0.85,
-          borderRadius: height * 0.85 / 2
+          height: height - 5,
+          width: height - 5,
+          borderRadius: (height - 5) / 2
         }}
       >
         <Icon

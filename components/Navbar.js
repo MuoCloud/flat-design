@@ -41,12 +41,12 @@ export default memo((props) => {
         paddingHorizontal: 8
     }}>
         <View row={true} verticalAlign="middle">
-          {back && (<NavbarAction {...controlProps} icon="arrow-ios-back-outline" onPress={onBack}/>)}
+          {back && (<NavbarAction icon="arrow-ios-back-outline" onPress={onBack} {...controlProps}/>)}
 
           {leftControls && makeControls(leftControls)}
         </View>
 
-        <Text color={textColor} size={textSize} lineHeight={textSize + 8} bold={true} style={[
+        <Text color={textColor} size={textSize} lineHeight={height} bold={true} style={[
         {
             marginLeft: 8
         },

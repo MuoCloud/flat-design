@@ -97,9 +97,9 @@ export default memo((props: Props) => {
         <View row={true} verticalAlign="middle">
           {back && (
             <NavbarAction
-              {...controlProps}
               icon="arrow-ios-back-outline"
               onPress={onBack}
+              {...controlProps}
             />
           )}
 
@@ -109,7 +109,7 @@ export default memo((props: Props) => {
         <Text
           color={textColor}
           size={textSize}
-          lineHeight={textSize + 8}
+          lineHeight={height}
           bold={true}
           style={[
             {
