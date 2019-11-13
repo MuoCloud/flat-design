@@ -44,7 +44,7 @@ export default memo((props: Props) => {
       >
         <Icon
           name={icon}
-          size={size + 5}
+          size={size + 2}
           color={color}
         />
       </View>
