@@ -12,7 +12,7 @@ export default memo((props) => {
         width: height - 5,
         borderRadius: (height - 5) / 2
     }}>
-        <Icon name={icon} size={size + 4} color={color}/>
+        <Icon name={icon} size={size + 5} color={color}/>
       </View>
     </View>);
 });
