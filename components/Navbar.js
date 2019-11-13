@@ -6,7 +6,7 @@ import NavbarAction from './NavbarAction';
 import Text from './Text';
 import View from './View';
 export default memo((props) => {
-    const { color = '#ffffff', borderColor = '#edeff2', border = true, height = 43, style, title, titleStyle, textSize = 16, leftControls, rightControls, back, onBack } = props;
+    const { color = '#ffffff', borderColor = '#edeff2', border = true, height = 43, style, title = '', titleStyle, textSize = 16, leftControls, rightControls, back, onBack } = props;
     const contentColorSystem = color !== 'transparent'
         ? getContentColorSystem(color)
         : 'light-content';

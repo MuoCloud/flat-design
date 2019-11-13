@@ -38,7 +38,7 @@ export default memo((props: Props) => {
     border = true,
     height = 43,
     style,
-    title,
+    title = '',
     titleStyle,
     textSize = 16,
     leftControls,
