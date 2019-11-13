@@ -1,8 +1,12 @@
 import React, { memo } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 let defaultColor = 'black';
+let boldWeight = '600';
 export const setDefaultTextColor = (color) => {
     defaultColor = color;
+};
+export const setBoldWeight = (weight) => {
+    boldWeight = weight;
 };
 export default memo((props) => {
     const { onPress, size = 14, lineHeight, bold, color = defaultColor, style, ...restProps } = props;
@@ -11,7 +15,7 @@ export default memo((props) => {
             color,
             fontSize: size,
             ...(lineHeight && { lineHeight }),
-            ...(bold && { fontWeight: 'bold' })
+            ...(bold && { fontWeight: boldWeight })
         },
         style
     ]} {...restProps}/>);

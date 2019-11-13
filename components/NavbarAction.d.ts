@@ -1,9 +1,11 @@
 import React from 'react';
-import { GestureResponderEvent, ViewStyle } from 'react-native';
+import { GestureResponderEvent } from 'react-native';
 interface Props {
-    color?: string;
     icon?: string;
-    style?: ViewStyle;
+    color?: string;
+    activeColor?: string;
+    size?: number;
+    height?: number;
     onPress?: (event: GestureResponderEvent) => void;
 }
 declare const _default: React.MemoExoticComponent<(props: Props) => JSX.Element>;

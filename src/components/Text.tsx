@@ -10,10 +10,17 @@ interface Props extends TextProps {
   children?: string | string[]
 }
 
+type BoldWeight = 'bold' | 'normal' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+
 let defaultColor = 'black'
+let boldWeight: BoldWeight = '600'
 
 export const setDefaultTextColor = (color: string) => {
   defaultColor = color
+}
+
+export const setBoldWeight = (weight: BoldWeight) => {
+  boldWeight = weight
 }
 
 export default memo((props: Props) => {
@@ -34,7 +41,7 @@ export default memo((props: Props) => {
           color,
           fontSize: size,
           ...(lineHeight && { lineHeight }),
-          ...(bold && { fontWeight: 'bold' })
+          ...(bold && { fontWeight: boldWeight })
         },
         style
       ]}
