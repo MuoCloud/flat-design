@@ -43,7 +43,9 @@ export default memo((props: Props) => {
     onBack
   } = props
 
-  const contentColorSystem = getContentColorSystem(color)
+  const contentColorSystem = color !== 'transparent'
+    ? getContentColorSystem(color)
+    : 'light-content'
 
   const barStyle = props.barStyle || contentColorSystem
   const textColor = props.textColor ||
