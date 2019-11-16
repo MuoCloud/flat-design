@@ -6,7 +6,7 @@ import imageLoading from '../assets/lottie/image_loading.json'
 import View from './View'
 
 interface Props extends AutoHeightImageProps {
-  onPress: (event: GestureResponderEvent) => void
+  onPress?: (event: GestureResponderEvent) => void
 }
 
 export default (props: Props) => {
