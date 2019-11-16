@@ -123,23 +123,27 @@ export default memo(forwardRef((props: Props, ref: any) => {
 
   const keyExtractor = useCallback((item, index) => item._id + String(index), [])
 
-  const loadingComponent = useCallback(() => isBusy ? (
+  const footerComponent = useCallback(() => (
     <View style={{ alignItems: 'center' }}>
-      <LottieView
-        style={{
-          width: 150,
-          height: 150
-        }}
-        autoPlay={true}
-        source={listLoading as any}
-      />
+      {
+        isBusy && (
+          <LottieView
+            style={{
+              width: 150,
+              height: 150
+            }}
+            autoPlay={true}
+            source={listLoading as any}
+          />
+        )
+      }
       {
         (enableBottomSpace && !inverted && BOTTOM_SPACE > 0) && (
           <Separator height={BOTTOM_SPACE} />
         )
       }
     </View>
-  ) : <></>, [isBusy])
+  ), [isBusy])
 
   useEffect(() => {
     next()
@@ -170,7 +174,7 @@ export default memo(forwardRef((props: Props, ref: any) => {
         )
       }
       ListHeaderComponent={ListHeaderComponent}
-      ListFooterComponent={horizontal ? null : loadingComponent}
+      ListFooterComponent={horizontal ? null : footerComponent}
       ListEmptyComponent={isBusy ? null : ListEmptyComponent}
       onContentSizeChange={onContentSizeChange}
       onEndReached={() => next()}

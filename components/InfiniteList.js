@@ -42,13 +42,13 @@ export default memo(forwardRef((props, ref) => {
     }, []);
     const renderItemCallback = useMemo(() => fadeIn ? (data) => (<FadeInView duration={150}>{renderItem(data)}</FadeInView>) : renderItem, []);
     const keyExtractor = useCallback((item, index) => item._id + String(index), []);
-    const loadingComponent = useCallback(() => isBusy ? (<View style={{ alignItems: 'center' }}>
-      <LottieView style={{
+    const footerComponent = useCallback(() => (<View style={{ alignItems: 'center' }}>
+      {isBusy && (<LottieView style={{
         width: 150,
         height: 150
-    }} autoPlay={true} source={listLoading}/>
+    }} autoPlay={true} source={listLoading}/>)}
       {(enableBottomSpace && !inverted && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}
-    </View>) : <></>, [isBusy]);
+    </View>), [isBusy]);
     useEffect(() => {
         next();
     }, []);
@@ -63,7 +63,7 @@ export default memo(forwardRef((props, ref) => {
             flatListRef.current.scrollTo(0);
         }
     }));
-    return (<FlatList ref={flatListRef} refreshControl={(!horizontal && allowRefresh) && (<RefreshControl refreshing={isRefreshing} onRefresh={refresh}/>)} ListHeaderComponent={ListHeaderComponent} ListFooterComponent={horizontal ? null : loadingComponent} ListEmptyComponent={isBusy ? null : ListEmptyComponent} onContentSizeChange={onContentSizeChange} onEndReached={() => next()} onEndReachedThreshold={0.1} onScroll={onScroll} onLayout={onLayout} data={list} keyExtractor={keyExtractor} renderItem={renderItemCallback} ItemSeparatorComponent={ItemSeparatorComponent} getItemLayout={getItemLayout} removeClippedSubviews={false} contentContainerStyle={[
+    return (<FlatList ref={flatListRef} refreshControl={(!horizontal && allowRefresh) && (<RefreshControl refreshing={isRefreshing} onRefresh={refresh}/>)} ListHeaderComponent={ListHeaderComponent} ListFooterComponent={horizontal ? null : footerComponent} ListEmptyComponent={isBusy ? null : ListEmptyComponent} onContentSizeChange={onContentSizeChange} onEndReached={() => next()} onEndReachedThreshold={0.1} onScroll={onScroll} onLayout={onLayout} data={list} keyExtractor={keyExtractor} renderItem={renderItemCallback} ItemSeparatorComponent={ItemSeparatorComponent} getItemLayout={getItemLayout} removeClippedSubviews={false} contentContainerStyle={[
         {
             ...((!isBusy && list.length === 0) && {
                 flex: 1
