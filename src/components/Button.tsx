@@ -59,7 +59,7 @@ export default memo((props: Props) => {
     ? darken(color, 30)
     : lighten(color, 60)
   const activeColor = colorSystem === 'dark-content'
-    ? darken(color, 3)
+    ? darken(color, 5)
     : darken(color, 10)
 
   return (

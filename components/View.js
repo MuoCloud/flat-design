@@ -7,7 +7,7 @@ const BOTTOM_SPACE = getBottomSpace();
 export default memo((props) => {
     const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, children, ...restProps } = props;
     const activeColor = props.activeColor ||
-        (color === 'transparent' ? 'transparent' : darken(color, 4));
+        (color === 'transparent' ? 'transparent' : darken(color, 5));
     const verticalAlignValue = {
         top: 'flex-start',
         middle: 'center',
