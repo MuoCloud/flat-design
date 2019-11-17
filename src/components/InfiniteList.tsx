@@ -57,6 +57,8 @@ interface Props {
   onRefresh?: () => void
   enableBottomSpace?: boolean
   contentPaddingBottom?: number
+  showsHorizontalScrollIndicator?: boolean
+  showsVerticalScrollIndicator?: boolean
 }
 
 export default memo(forwardRef((props: Props, ref: any) => {
@@ -80,7 +82,9 @@ export default memo(forwardRef((props: Props, ref: any) => {
     dataPipe = defaultPipe,
     onRefresh,
     enableBottomSpace,
-    contentPaddingBottom
+    contentPaddingBottom,
+    showsHorizontalScrollIndicator = true,
+    showsVerticalScrollIndicator = true
   } = props
 
   const [isBusy, setBusy] = useState(false)
@@ -173,6 +177,8 @@ export default memo(forwardRef((props: Props, ref: any) => {
           />
         )
       }
+      showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
+      showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={horizontal ? null : footerComponent}
       ListEmptyComponent={isBusy ? null : ListEmptyComponent}

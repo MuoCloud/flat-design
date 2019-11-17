@@ -11,7 +11,7 @@ export const defaultPipe = (list, data) => uniqBy([...list, ...data], '_id');
 export const invertedPipe = (list, data) => uniqBy([...data, ...list], '_id');
 const BOTTOM_SPACE = getBottomSpace();
 export default memo(forwardRef((props, ref) => {
-    const { dataProvider, pollingDataProvider, renderItem, ListHeaderComponent, ListEmptyComponent, ItemSeparatorComponent, getItemLayout, contentContainerStyle, style, onContentSizeChange, allowRefresh = true, fadeIn, onScroll, onLayout, inverted, horizontal, dataPipe = defaultPipe, onRefresh, enableBottomSpace, contentPaddingBottom } = props;
+    const { dataProvider, pollingDataProvider, renderItem, ListHeaderComponent, ListEmptyComponent, ItemSeparatorComponent, getItemLayout, contentContainerStyle, style, onContentSizeChange, allowRefresh = true, fadeIn, onScroll, onLayout, inverted, horizontal, dataPipe = defaultPipe, onRefresh, enableBottomSpace, contentPaddingBottom, showsHorizontalScrollIndicator = true, showsVerticalScrollIndicator = true } = props;
     const [isBusy, setBusy] = useState(false);
     const [isRefreshing, setRefreshing] = useState(false);
     const [list, setList] = useState([]);
@@ -63,7 +63,7 @@ export default memo(forwardRef((props, ref) => {
             flatListRef.current.scrollTo(0);
         }
     }));
-    return (<FlatList ref={flatListRef} refreshControl={(!horizontal && allowRefresh) && (<RefreshControl refreshing={isRefreshing} onRefresh={refresh}/>)} ListHeaderComponent={ListHeaderComponent} ListFooterComponent={horizontal ? null : footerComponent} ListEmptyComponent={isBusy ? null : ListEmptyComponent} onContentSizeChange={onContentSizeChange} onEndReached={() => next()} onEndReachedThreshold={0.1} onScroll={onScroll} onLayout={onLayout} data={list} keyExtractor={keyExtractor} renderItem={renderItemCallback} ItemSeparatorComponent={ItemSeparatorComponent} getItemLayout={getItemLayout} removeClippedSubviews={false} contentContainerStyle={[
+    return (<FlatList ref={flatListRef} refreshControl={(!horizontal && allowRefresh) && (<RefreshControl refreshing={isRefreshing} onRefresh={refresh}/>)} showsHorizontalScrollIndicator={showsHorizontalScrollIndicator} showsVerticalScrollIndicator={showsVerticalScrollIndicator} ListHeaderComponent={ListHeaderComponent} ListFooterComponent={horizontal ? null : footerComponent} ListEmptyComponent={isBusy ? null : ListEmptyComponent} onContentSizeChange={onContentSizeChange} onEndReached={() => next()} onEndReachedThreshold={0.1} onScroll={onScroll} onLayout={onLayout} data={list} keyExtractor={keyExtractor} renderItem={renderItemCallback} ItemSeparatorComponent={ItemSeparatorComponent} getItemLayout={getItemLayout} removeClippedSubviews={false} contentContainerStyle={[
         {
             ...((!isBusy && list.length === 0) && {
                 flex: 1

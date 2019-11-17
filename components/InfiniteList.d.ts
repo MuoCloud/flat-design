@@ -28,6 +28,8 @@ interface Props {
     onRefresh?: () => void;
     enableBottomSpace?: boolean;
     contentPaddingBottom?: number;
+    showsHorizontalScrollIndicator?: boolean;
+    showsVerticalScrollIndicator?: boolean;
 }
 declare const _default: React.MemoExoticComponent<React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>>;
 export default _default;
