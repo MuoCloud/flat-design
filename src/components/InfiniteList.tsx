@@ -27,7 +27,7 @@ export const invertedPipe = (list: any[], data: any[]) => uniqBy([...data, ...li
 
 const BOTTOM_SPACE = getBottomSpace()
 
-interface Props extends BoxProps, FlatListProps<any> {
+interface Props extends BoxProps, Partial<FlatListProps<any>> {
   dataProvider: CursorDataProvider | OffsetDataProvider
   pollingDataProvider?: CursorDataProvider | OffsetDataProvider
   dataPipe?: DataPipe

@@ -5,7 +5,7 @@ import { CursorDataProvider, OffsetDataProvider } from '../types/data-provider';
 declare type DataPipe = (list: any[], data: any[]) => any[];
 export declare const defaultPipe: (list: any[], data: any[]) => any[];
 export declare const invertedPipe: (list: any[], data: any[]) => any[];
-interface Props extends BoxProps, FlatListProps<any> {
+interface Props extends BoxProps, Partial<FlatListProps<any>> {
     dataProvider: CursorDataProvider | OffsetDataProvider;
     pollingDataProvider?: CursorDataProvider | OffsetDataProvider;
     dataPipe?: DataPipe;
