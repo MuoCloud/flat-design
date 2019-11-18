@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import { Text } from 'react-native';
+import { extractBoxStyles } from '../utils';
 import Icon from './Icon';
 import View from './View';
 export default memo((props) => {
-    const { color = 'black', backgroundColor = '#ffffff', title, onPress, style = {} } = props;
+    const { color = 'black', backgroundColor = '#ffffff', title, onPress, style, ...restProps } = props;
     return (<View onPress={onPress} color={backgroundColor} style={[
         {
             paddingHorizontal: 20,
@@ -11,8 +12,9 @@ export default memo((props) => {
             flexDirection: 'row',
             alignItems: 'center'
         },
+        extractBoxStyles(props),
         style
-    ]}>
+    ]} {...restProps}>
       <Text style={{
         fontSize: 16,
         color

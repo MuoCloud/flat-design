@@ -1,10 +1,11 @@
 import { map, reverse } from 'lodash'
 import React, { memo, useMemo } from 'react'
 import { ImageSourcePropType, ViewProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 import Avatar from './Avatar'
 import View from './View'
 
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
   sources: ImageSourcePropType[]
   size?: number
 }
@@ -27,6 +28,7 @@ export default memo((props: Props) => {
           alignItems: 'center',
           alignSelf: 'flex-start'
         },
+        extractBoxStyles(props),
         style
       ]}
       {...restProps}

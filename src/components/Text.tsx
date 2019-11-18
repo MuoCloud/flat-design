@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
 import { GestureResponderEvent, Text, TextProps, TouchableOpacity } from 'react-native'
+import { extractBoxStyles } from '../utils'
 
-interface Props extends TextProps {
+interface Props extends BoxProps, TextProps {
   onPress?: (event: GestureResponderEvent) => void
   size?: number
   lineHeight?: number
@@ -43,6 +44,7 @@ export default memo((props: Props) => {
           ...(lineHeight && { lineHeight }),
           ...(bold && { fontWeight: boldWeight })
         },
+        extractBoxStyles(props),
         style
       ]}
       {...restProps}

@@ -3,9 +3,10 @@ import React, { useCallback, useState } from 'react'
 import { GestureResponderEvent } from 'react-native'
 import AutoHeightImage, { AutoHeightImageProps } from 'react-native-auto-height-image'
 import imageLoading from '../assets/lottie/image_loading.json'
+import { extractBoxStyles } from '../utils'
 import View from './View'
 
-interface Props extends AutoHeightImageProps {
+interface Props extends BoxProps, AutoHeightImageProps {
   onPress?: (event: GestureResponderEvent) => void
 }
 
@@ -26,7 +27,11 @@ export default (props: Props) => {
   return (
     <View
       onPress={onPress}
-      style={[{ backgroundColor: '#eceff1' }, style]}
+      style={[
+        { backgroundColor: '#eceff1' },
+        extractBoxStyles(props),
+        style
+      ]}
     >
       {
         !loaded && (
@@ -42,6 +47,7 @@ export default (props: Props) => {
           </View>
         )
       }
+
       <AutoHeightImage
         onHeightChange={onHeightChangeHandler}
         {...restProps}

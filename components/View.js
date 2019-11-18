@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { darken } from '../utils';
+import { darken, extractBoxMarginStyles, extractBoxPaddingStyles, extractBoxStyles } from '../utils';
 import Separator from './Separator';
 const BOTTOM_SPACE = getBottomSpace();
 export default memo((props) => {
-    const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, padding = 0, margin = 0, enableBottomSpace, onPress, style, children, ...restProps } = props;
+    const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, enableBottomSpace, onPress, style, touchableStyle, children, ...restProps } = props;
     const activeColor = props.activeColor ||
         (color === 'transparent' ? 'transparent' : darken(color, 5));
     const verticalAlignValue = {
@@ -24,7 +24,7 @@ export default memo((props) => {
     const finalStyle = [
         {
             backgroundColor: (onPress && active) ? activeColor : color,
-            ...(flex && { flex }),
+            ...(typeof flex === 'number' && { flex }),
             ...(wrap && { flexWrap: 'wrap' }),
             ...(row && {
                 flexDirection: 'row',
@@ -44,18 +44,21 @@ export default memo((props) => {
                     justifyContent: verticalAlignValue
                 })
             }),
-            padding,
-            margin,
-            borderRadius: radius
+            borderRadius: radius,
         },
+        onPress ? extractBoxPaddingStyles(props) : extractBoxStyles(props),
         style
     ];
     const viewComponent = (<View style={finalStyle} {...restProps}>
       {children}
+
       {(enableBottomSpace && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}
     </View>);
     if (onPress) {
-        return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut}>
+        return (<TouchableWithoutFeedback onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut} style={[
+            extractBoxMarginStyles(props),
+            touchableStyle
+        ]}>
         {viewComponent}
       </TouchableWithoutFeedback>);
     }

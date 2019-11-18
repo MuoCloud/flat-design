@@ -5,8 +5,9 @@ import {
   ImageProps,
   TouchableWithoutFeedback
 } from 'react-native'
+import { extractBoxStyles } from '../utils'
 
-interface Props extends ImageProps {
+interface Props extends BoxProps, ImageProps {
   onPress?: (event: GestureResponderEvent) => void
 }
 
@@ -17,8 +18,9 @@ export default memo((props: Props) => {
     <Image
       style={[
         {
-          backgroundColor: '#eceff1'
+          backgroundColor: '#eceff1',
         },
+        extractBoxStyles(props),
         style
       ]}
       {...restProps}

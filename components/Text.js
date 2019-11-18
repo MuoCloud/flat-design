@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { extractBoxStyles } from '../utils';
 let defaultColor = 'black';
 let boldWeight = '600';
 export const setDefaultTextColor = (color) => {
@@ -17,6 +18,7 @@ export default memo((props) => {
             ...(lineHeight && { lineHeight }),
             ...(bold && { fontWeight: boldWeight })
         },
+        extractBoxStyles(props),
         style
     ]} {...restProps}/>);
     if (onPress) {

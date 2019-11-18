@@ -1,6 +1,6 @@
 import React from 'react';
 import { GestureResponderEvent, TextProps } from 'react-native';
-interface Props extends TextProps {
+interface Props extends BoxProps, TextProps {
     onPress?: (event: GestureResponderEvent) => void;
     size?: number;
     lineHeight?: number;

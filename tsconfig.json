@@ -2,10 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "target": "es2018",
     "moduleResolution": "node",
     "skipLibCheck": true,
@@ -19,6 +16,10 @@
     "allowJs": false,
     "declaration": true
   },
+  "files": [
+    "src/types/common-props.d.ts",
+    "src/types/data-provider.d.ts"
+  ],
   "include": [
     "src/**/*"
   ],

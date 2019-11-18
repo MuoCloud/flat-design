@@ -1,6 +1,6 @@
 import React from 'react';
-import { GestureResponderEvent, ViewProps } from 'react-native';
-interface Props extends ViewProps {
+import { GestureResponderEvent, ViewProps, ViewStyle } from 'react-native';
+interface Props extends BoxProps, ViewProps {
     flex?: number;
     color?: string;
     activeColor?: string;
@@ -10,9 +10,8 @@ interface Props extends ViewProps {
     verticalAlign?: 'top' | 'middle' | 'bottom';
     align?: 'left' | 'center' | 'right';
     radius?: number;
-    padding?: number;
-    margin?: number;
     enableBottomSpace?: boolean;
+    touchableStyle?: ViewStyle;
     onPress?: (event: GestureResponderEvent) => void;
     children?: React.ReactNode;
 }

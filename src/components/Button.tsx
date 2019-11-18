@@ -7,7 +7,7 @@ import {
 import { darken, getContentColorSystem, lighten } from '../utils'
 import View from './View'
 
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
   children: string
   size?: 'large' | 'medium' | 'small'
   disabled?: boolean

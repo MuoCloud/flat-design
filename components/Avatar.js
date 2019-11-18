@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { extractBoxStyles } from '../utils';
 import Image from './Image';
 export default memo((props) => {
     const { style, onPress, size = 40, ...restProps } = props;
@@ -6,6 +7,7 @@ export default memo((props) => {
         {
             borderRadius: size / 2
         },
+        extractBoxStyles(props),
         style
     ]} {...restProps}/>);
 });

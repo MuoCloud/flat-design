@@ -1,9 +1,10 @@
 import { map, uniq, without } from 'lodash'
 import React, { memo, useCallback, useState } from 'react'
 import { Platform, TextInput, View, ViewProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 import { TagProps } from './Tag'
 
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
   initialTags?: string[]
   placeholder?: string
   onChangeTags?: (tags: string[]) => void
@@ -16,7 +17,8 @@ export default memo((props: Props) => {
     onChangeTags,
     tagComponent,
     placeholder = '',
-    style
+    style,
+    ...restProps
   } = props
   const [tags, setTags] = useState(initialTags)
   const [text, setText] = useState('')
@@ -68,10 +70,12 @@ export default memo((props: Props) => {
           borderWidth: 1,
           borderColor: '#eceff1',
           paddingHorizontal: 10,
-          paddingTop: 10
+          paddingTop: 10,
         },
+        extractBoxStyles(props),
         style
       ]}
+      {...restProps}
     >
       {
         map(tags, tag => {
@@ -88,6 +92,7 @@ export default memo((props: Props) => {
           )
         })
       }
+
       <TextInput
         style={{
           ...Platform.select({

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
 import { TagProps } from './Tag';
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
     initialTags?: string[];
     placeholder?: string;
     onChangeTags?: (tags: string[]) => void;

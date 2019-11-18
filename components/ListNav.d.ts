@@ -1,11 +1,10 @@
 import React from 'react';
-import { GestureResponderEvent, ViewStyle } from 'react-native';
-interface Props {
+import { GestureResponderEvent, ViewProps } from 'react-native';
+interface Props extends BoxProps, ViewProps {
     color?: string;
     backgroundColor?: string;
     title: string;
     onPress?: (event: GestureResponderEvent) => void;
-    style?: ViewStyle;
 }
 declare const _default: React.MemoExoticComponent<(props: Props) => JSX.Element>;
 export default _default;

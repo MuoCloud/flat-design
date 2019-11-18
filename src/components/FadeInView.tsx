@@ -1,7 +1,8 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Animated, ViewProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
   duration?: number
   children?: React.ReactNode
 }
@@ -23,7 +24,11 @@ export default memo((props: Props) => {
 
   return (
     <Animated.View
-      style={[style, { opacity }]}
+      style={[
+        extractBoxStyles(props),
+        style,
+        { opacity }
+      ]}
       {...restProps}
     >
       {children}

@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
-import { GestureResponderEvent, Text, ViewStyle } from 'react-native'
+import { GestureResponderEvent, Text, ViewProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 import Icon from './Icon'
 import View from './View'
 
-interface Props {
+interface Props extends BoxProps, ViewProps {
   color?: string
   backgroundColor?: string
   title: string
   onPress?: (event: GestureResponderEvent) => void
-  style?: ViewStyle
 }
 
 export default memo((props: Props) => {
@@ -17,7 +17,8 @@ export default memo((props: Props) => {
     backgroundColor = '#ffffff',
     title,
     onPress,
-    style = {}
+    style,
+    ...restProps
   } = props
 
   return (
@@ -31,8 +32,10 @@ export default memo((props: Props) => {
           flexDirection: 'row',
           alignItems: 'center'
         },
+        extractBoxStyles(props),
         style
       ]}
+      {...restProps}
     >
       <Text
         style={{

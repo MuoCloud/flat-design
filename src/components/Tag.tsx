@@ -1,9 +1,10 @@
 import React, { memo } from 'react'
 import { GestureResponderEvent, TextStyle, ViewProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 import Text from './Text'
 import View from './View'
 
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
   children: string
   textStyle?: TextStyle
   color?: string
@@ -22,7 +23,8 @@ export default memo((props: Props) => {
     onPress,
     color = '#555',
     textColor = 'white',
-    bold
+    bold,
+    ...restProps
   } = props
 
   return (
@@ -37,8 +39,10 @@ export default memo((props: Props) => {
           paddingHorizontal: 12,
           height: 26,
         },
+        extractBoxStyles(props),
         style
       ]}
+      {...restProps}
     >
       <Text
         color={textColor}

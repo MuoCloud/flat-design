@@ -1,5 +1,6 @@
 import React from 'react';
-interface Props {
+import { ViewProps } from 'react-native';
+interface Props extends BoxProps, ViewProps {
     color?: string;
     height?: number;
 }

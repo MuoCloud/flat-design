@@ -10,18 +10,11 @@ import React, {
   useRef,
   useState
 } from 'react'
-import {
-  LayoutChangeEvent,
-  ListRenderItem,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  RefreshControl,
-  View,
-  ViewStyle
-} from 'react-native'
+import { FlatListProps, RefreshControl, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
 import listLoading from '../assets/lottie/list_loading.json'
+import { extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
 import FadeInView from './FadeInView'
 import Separator from './Separator'
 
@@ -32,33 +25,14 @@ export const invertedPipe = (list: any[], data: any[]) => uniqBy([...data, ...li
 
 const BOTTOM_SPACE = getBottomSpace()
 
-interface Props {
+interface Props extends BoxProps, FlatListProps<any> {
   dataProvider: CursorDataProvider | OffsetDataProvider
   pollingDataProvider?: CursorDataProvider | OffsetDataProvider
-  renderItem: ListRenderItem<any>
-  ListHeaderComponent?: React.FunctionComponent
-  ListEmptyComponent?: React.FunctionComponent
-  ItemSeparatorComponent?: React.ComponentClass<any, any> | React.FunctionComponent<any>
-  getItemLayout?: (data: any[] | null, index: number) => {
-    index: number;
-    length: number;
-    offset: number;
-  }
-  contentContainerStyle?: ViewStyle
-  style?: ViewStyle
-  onContentSizeChange?: (w: number, h: number) => void
-  allowRefresh?: boolean
-  fadeIn?: boolean
-  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void
-  onLayout?: (event: LayoutChangeEvent) => void
-  inverted?: boolean
   dataPipe?: DataPipe
-  horizontal?: boolean
+  allowRefresh?: boolean
   onRefresh?: () => void
+  fadeIn?: boolean
   enableBottomSpace?: boolean
-  contentPaddingBottom?: number
-  showsHorizontalScrollIndicator?: boolean
-  showsVerticalScrollIndicator?: boolean
 }
 
 export default memo(forwardRef((props: Props, ref: any) => {
@@ -82,7 +56,6 @@ export default memo(forwardRef((props: Props, ref: any) => {
     dataPipe = defaultPipe,
     onRefresh,
     enableBottomSpace,
-    contentPaddingBottom,
     showsHorizontalScrollIndicator = true,
     showsVerticalScrollIndicator = true
   } = props
@@ -141,6 +114,7 @@ export default memo(forwardRef((props: Props, ref: any) => {
           />
         )
       }
+
       {
         (enableBottomSpace && !inverted && BOTTOM_SPACE > 0) && (
           <Separator height={BOTTOM_SPACE} />
@@ -197,14 +171,15 @@ export default memo(forwardRef((props: Props, ref: any) => {
         {
           ...((!isBusy && list.length === 0) && {
             flex: 1
-          }),
-          ...(contentPaddingBottom && {
-            paddingBottom: contentPaddingBottom
           })
         },
+        extractBoxPaddingStyles(props),
         contentContainerStyle
       ]}
-      style={style}
+      style={[
+        extractBoxMarginStyles(props),
+        style
+      ]}
       inverted={inverted}
       horizontal={horizontal}
     />

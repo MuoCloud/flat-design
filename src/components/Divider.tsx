@@ -1,23 +1,35 @@
 import React, { memo } from 'react'
 import { View, ViewProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
   color?: string
-  marginX?: number
-  marginY?: number
+  height?: number
 }
 
 export default memo((props: Props) => {
-  const { color = '#eceff1', marginX = 0, marginY = 10 } = props
+  const {
+    color = '#eceff1',
+    height = 1,
+    mx = 0,
+    my = 10,
+    style,
+    ...restProps
+  } = props
 
   return (
     <View
-      style={{
-        height: 1,
-        backgroundColor: color,
-        marginHorizontal: marginX,
-        marginVertical: marginY
-      }}
+      style={[
+        {
+          height,
+          backgroundColor: color,
+          marginHorizontal: mx,
+          marginVertical: my
+        },
+        extractBoxStyles(props),
+        style
+      ]}
+      {...restProps}
     />
   )
 })

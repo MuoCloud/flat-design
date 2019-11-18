@@ -1,8 +1,9 @@
 import { map, uniq, without } from 'lodash';
 import React, { memo, useCallback, useState } from 'react';
 import { Platform, TextInput, View } from 'react-native';
+import { extractBoxStyles } from '../utils';
 export default memo((props) => {
-    const { initialTags = [], onChangeTags, tagComponent, placeholder = '', style } = props;
+    const { initialTags = [], onChangeTags, tagComponent, placeholder = '', style, ...restProps } = props;
     const [tags, setTags] = useState(initialTags);
     const [text, setText] = useState('');
     const onKeyPress = useCallback(event => {
@@ -42,16 +43,18 @@ export default memo((props) => {
             borderWidth: 1,
             borderColor: '#eceff1',
             paddingHorizontal: 10,
-            paddingTop: 10
+            paddingTop: 10,
         },
+        extractBoxStyles(props),
         style
-    ]}>
+    ]} {...restProps}>
       {map(tags, tag => {
         return (<TagComponent key={tag} style={{
             marginRight: 7.5,
             marginBottom: 10
         }} onPress={() => deleteTag(tag)} children={tag}/>);
     })}
+
       <TextInput style={{
         ...Platform.select({
             android: {

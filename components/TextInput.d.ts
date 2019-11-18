@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, TextInputProps } from 'react-native';
-interface Props extends TextInputProps {
+interface Props extends BoxProps, TextInputProps {
     useSingleLinePadding?: boolean;
     border?: boolean;
     borderColor?: string;

@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
 import { GestureResponderEvent, ImageProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 import Image from './Image'
 
-interface Props extends ImageProps {
+interface Props extends BoxProps, ImageProps {
   size?: number
   onPress?: (event: GestureResponderEvent) => void
 }
@@ -19,6 +20,7 @@ export default memo((props: Props) => {
         {
           borderRadius: size / 2
         },
+        extractBoxStyles(props),
         style
       ]}
       {...restProps}

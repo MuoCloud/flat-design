@@ -1,6 +1,6 @@
 import React from 'react';
 import { GestureResponderEvent, ImageProps } from 'react-native';
-interface Props extends ImageProps {
+interface Props extends BoxProps, ImageProps {
     size?: number;
     onPress?: (event: GestureResponderEvent) => void;
 }

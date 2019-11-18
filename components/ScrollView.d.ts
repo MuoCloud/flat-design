@@ -1,9 +1,8 @@
 import React from 'react';
 import { ScrollViewProps } from 'react-native';
-interface Props extends ScrollViewProps {
+interface Props extends BoxProps, ScrollViewProps {
     flex?: number;
     color?: string;
-    contentPadding?: number;
     enableBottomSpace?: boolean;
     children?: React.ReactNode;
 }

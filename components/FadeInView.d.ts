@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-interface Props extends ViewProps {
+interface Props extends BoxProps, ViewProps {
     duration?: number;
     children?: React.ReactNode;
 }

@@ -1,7 +1,8 @@
 import React, { forwardRef, memo, Ref } from 'react'
 import { Platform, TextInput, TextInputProps } from 'react-native'
+import { extractBoxStyles } from '../utils'
 
-interface Props extends TextInputProps {
+interface Props extends BoxProps, TextInputProps {
   useSingleLinePadding?: boolean
   border?: boolean
   borderColor?: string
@@ -43,8 +44,9 @@ export default memo(forwardRef((props: Props, ref: Ref<TextInput>) => {
               paddingTop: 12.5,
               paddingBottom: 12.5
             }
-          })
+          }),
         },
+        extractBoxStyles(props),
         style
       ]}
       multiline={multiline}

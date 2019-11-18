@@ -5,13 +5,14 @@ import { RefreshControl, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import listLoading from '../assets/lottie/list_loading.json';
+import { extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils';
 import FadeInView from './FadeInView';
 import Separator from './Separator';
 export const defaultPipe = (list, data) => uniqBy([...list, ...data], '_id');
 export const invertedPipe = (list, data) => uniqBy([...data, ...list], '_id');
 const BOTTOM_SPACE = getBottomSpace();
 export default memo(forwardRef((props, ref) => {
-    const { dataProvider, pollingDataProvider, renderItem, ListHeaderComponent, ListEmptyComponent, ItemSeparatorComponent, getItemLayout, contentContainerStyle, style, onContentSizeChange, allowRefresh = true, fadeIn, onScroll, onLayout, inverted, horizontal, dataPipe = defaultPipe, onRefresh, enableBottomSpace, contentPaddingBottom, showsHorizontalScrollIndicator = true, showsVerticalScrollIndicator = true } = props;
+    const { dataProvider, pollingDataProvider, renderItem, ListHeaderComponent, ListEmptyComponent, ItemSeparatorComponent, getItemLayout, contentContainerStyle, style, onContentSizeChange, allowRefresh = true, fadeIn, onScroll, onLayout, inverted, horizontal, dataPipe = defaultPipe, onRefresh, enableBottomSpace, showsHorizontalScrollIndicator = true, showsVerticalScrollIndicator = true } = props;
     const [isBusy, setBusy] = useState(false);
     const [isRefreshing, setRefreshing] = useState(false);
     const [list, setList] = useState([]);
@@ -47,6 +48,7 @@ export default memo(forwardRef((props, ref) => {
         width: 150,
         height: 150
     }} autoPlay={true} source={listLoading}/>)}
+
       {(enableBottomSpace && !inverted && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}
     </View>), [isBusy]);
     useEffect(() => {
@@ -67,11 +69,12 @@ export default memo(forwardRef((props, ref) => {
         {
             ...((!isBusy && list.length === 0) && {
                 flex: 1
-            }),
-            ...(contentPaddingBottom && {
-                paddingBottom: contentPaddingBottom
             })
         },
+        extractBoxPaddingStyles(props),
         contentContainerStyle
-    ]} style={style} inverted={inverted} horizontal={horizontal}/>);
+    ]} style={[
+        extractBoxMarginStyles(props),
+        style
+    ]} inverted={inverted} horizontal={horizontal}/>);
 }));
