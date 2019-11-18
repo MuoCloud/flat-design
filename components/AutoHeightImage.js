@@ -4,7 +4,7 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import imageLoading from '../assets/lottie/image_loading.json';
 import View from './View';
 export default (props) => {
-    const { onPress, onHeightChange, ...restProps } = props;
+    const { onPress, onHeightChange, style, ...restProps } = props;
     const [loaded, setLoaded] = useState(false);
     const onHeightChangeHandler = useCallback((height) => {
         if (!loaded && height > 0) {
@@ -14,8 +14,8 @@ export default (props) => {
             onHeightChange(height);
         }
     }, [loaded]);
-    return (<View onPress={onPress} style={{ backgroundColor: '#eceff1' }}>
-      {!loaded && (<View style={{ alignItems: 'center' }}>
+    return (<View onPress={onPress} style={[{ backgroundColor: '#eceff1' }, style]}>
+      {!loaded && (<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <LottieView style={{
         width: 150,
         height: 150

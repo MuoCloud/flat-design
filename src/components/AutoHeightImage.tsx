@@ -10,7 +10,7 @@ interface Props extends AutoHeightImageProps {
 }
 
 export default (props: Props) => {
-  const { onPress, onHeightChange, ...restProps } = props
+  const { onPress, onHeightChange, style, ...restProps } = props
   const [loaded, setLoaded] = useState(false)
 
   const onHeightChangeHandler = useCallback((height: number) => {
@@ -26,11 +26,11 @@ export default (props: Props) => {
   return (
     <View
       onPress={onPress}
-      style={{ backgroundColor: '#eceff1' }}
+      style={[{ backgroundColor: '#eceff1' }, style]}
     >
       {
         !loaded && (
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <LottieView
               style={{
                 width: 150,
