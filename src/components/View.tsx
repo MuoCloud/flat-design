@@ -10,12 +10,7 @@ import {
   ViewStyle
 } from 'react-native'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
-import {
-  darken,
-  extractBoxMarginStyles,
-  extractBoxPaddingStyles,
-  extractBoxStyles
-} from '../utils'
+import { darken, extractBoxStyles } from '../utils'
 import Separator from './Separator'
 
 const BOTTOM_SPACE = getBottomSpace()
@@ -99,7 +94,7 @@ export default memo((props: Props) => {
       }),
       borderRadius: radius,
     },
-    onPress ? extractBoxPaddingStyles(props) : extractBoxStyles(props),
+    extractBoxStyles(props),
     style
   ]
 
@@ -124,10 +119,7 @@ export default memo((props: Props) => {
         onPress={onPress}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
-        style={[
-          extractBoxMarginStyles(props),
-          touchableStyle
-        ]}
+        style={touchableStyle}
       >
         {viewComponent}
       </TouchableWithoutFeedback>
