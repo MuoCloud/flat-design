@@ -1,4 +1,4 @@
-declare interface BoxProps {
+export interface BoxProps {
   padding?: number
   pt?: number
   pb?: number

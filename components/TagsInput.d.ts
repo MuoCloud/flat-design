@@ -1,5 +1,6 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
+import { BoxProps } from '../types/common-props';
 import { TagProps } from './Tag';
 interface Props extends BoxProps, ViewProps {
     initialTags?: string[];

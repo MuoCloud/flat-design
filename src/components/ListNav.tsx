@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { GestureResponderEvent, Text, ViewProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 import Icon from './Icon'
 import View from './View'

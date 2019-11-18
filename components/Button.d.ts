@@ -1,5 +1,6 @@
 import React from 'react';
 import { GestureResponderEvent, ViewProps } from 'react-native';
+import { BoxProps } from '../types/common-props';
 interface Props extends BoxProps, ViewProps {
     children: string;
     size?: 'large' | 'medium' | 'small';

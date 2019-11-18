@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react'
 import { GestureResponderEvent } from 'react-native'
 import AutoHeightImage, { AutoHeightImageProps } from 'react-native-auto-height-image'
 import imageLoading from '../assets/lottie/image_loading.json'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 import View from './View'
 

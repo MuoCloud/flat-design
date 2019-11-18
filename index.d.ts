@@ -1,5 +1,3 @@
-/// <reference path="src/types/common-props.d.ts" />
-/// <reference path="src/types/data-provider.d.ts" />
 export { default as AutoHeightImage } from './components/AutoHeightImage';
 export { default as Avatar } from './components/Avatar';
 export { default as AvatarStack } from './components/AvatarStack';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollViewProps } from 'react-native';
+import { BoxProps } from '../types/common-props';
 interface Props extends BoxProps, ScrollViewProps {
     flex?: number;
     color?: string;

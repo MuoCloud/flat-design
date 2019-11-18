@@ -1,6 +1,7 @@
 import { map, reverse } from 'lodash'
 import React, { memo, useMemo } from 'react'
 import { ImageSourcePropType, ViewProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 import Avatar from './Avatar'
 import View from './View'

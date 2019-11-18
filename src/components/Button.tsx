@@ -4,6 +4,7 @@ import {
   Text,
   ViewProps
 } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { darken, getContentColorSystem, lighten } from '../utils'
 import View from './View'
 

@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Animated, ViewProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, ViewProps {

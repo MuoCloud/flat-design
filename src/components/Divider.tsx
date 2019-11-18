@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { View, ViewProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, ViewProps {

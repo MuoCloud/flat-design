@@ -1,5 +1,6 @@
 import React, { forwardRef, memo, Ref } from 'react'
 import { Platform, TextInput, TextInputProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, TextInputProps {

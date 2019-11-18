@@ -1,4 +1,5 @@
 import { StyleProp } from 'react-native'
+import { BoxProps } from '../types/common-props'
 
 export const extractBoxMarginStyles = (props: BoxProps) => {
     const style: StyleProp<any> = {}

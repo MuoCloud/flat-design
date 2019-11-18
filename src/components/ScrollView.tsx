@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { ScrollViewProps } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
+import { BoxProps } from '../types/common-props'
 import { extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
 import Separator from './Separator'
 

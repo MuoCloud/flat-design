@@ -1,6 +1,7 @@
 import { map, uniq, without } from 'lodash'
 import React, { memo, useCallback, useState } from 'react'
 import { Platform, TextInput, View, ViewProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 import { TagProps } from './Tag'
 

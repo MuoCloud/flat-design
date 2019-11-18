@@ -19,7 +19,7 @@ declare interface OffsetState extends LifeCycleState {
 }
 
 interface LifeCycleState {
-  query: KeyValueMap<any>
+  query: { [key: string]: any }
   hasNext: boolean
 }
 
@@ -48,5 +48,5 @@ declare class DataProvider<C, S extends LifeCycleState> {
   refresh(): Promise<any>
 }
 
-declare type CursorDataProvider = DataProvider<CursorConfigs, CursorState>
-declare type OffsetDataProvider = DataProvider<OffsetConfigs, OffsetState>
+export type CursorDataProvider = DataProvider<CursorConfigs, CursorState>
+export type OffsetDataProvider = DataProvider<OffsetConfigs, OffsetState>

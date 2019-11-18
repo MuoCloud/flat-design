@@ -1,5 +1,7 @@
 import React from 'react';
 import { FlatListProps } from 'react-native';
+import { BoxProps } from '../types/common-props';
+import { CursorDataProvider, OffsetDataProvider } from '../types/data-provider';
 declare type DataPipe = (list: any[], data: any[]) => any[];
 export declare const defaultPipe: (list: any[], data: any[]) => any[];
 export declare const invertedPipe: (list: any[], data: any[]) => any[];

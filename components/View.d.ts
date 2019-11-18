@@ -1,3 +1,4 @@
+import { BoxProps } from '../types/common-props';
 import React from 'react';
 import { GestureResponderEvent, ViewProps, ViewStyle } from 'react-native';
 interface Props extends BoxProps, ViewProps {
