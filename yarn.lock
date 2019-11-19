@@ -654,11 +654,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@eva-design/eva@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/@eva-design/eva/download/@eva-design/eva-1.2.0.tgz#dc7714f31b7abfd928a8a3cefc28726a506afc60"
-  integrity sha1-3HcU8xt6v9koqKPO/ChyalBq/GA=
-
 "@expo/vector-icons@^10.0.0":
   version "10.0.6"
   resolved "https://registry.npm.taobao.org/@expo/vector-icons/download/@expo/vector-icons-10.0.6.tgz#5718953ff0b97827d11dae5787976fa8ce5caaed"
@@ -2063,11 +2058,6 @@ image-size@^0.6.0:
   version "0.6.3"
   resolved "https://registry.npm.taobao.org/image-size/download/image-size-0.6.3.tgz#e7e5c65bb534bd7cdcedd6cb5166272a85f75fb2"
   integrity sha1-5+XGW7U0vXzc7dbLUWYnKoX3X7I=
-
-immer@^4.0.0:
-  version "4.0.2"
-  resolved "https://registry.npm.taobao.org/immer/download/immer-4.0.2.tgz#9ff0fcdf88e06f92618a5978ceecb5884e633559"
-  integrity sha1-n/D834jgb5Jhill4zuy1iE5jNVk=
 
 import-fresh@^2.0.0:
   version "2.0.0"
@@ -3592,19 +3582,12 @@ react-is@^16.8.1:
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha1-LMD+D7p0LZf9UnxCoTvsTusGJBw=
 
-react-model@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.npm.taobao.org/react-model/download/react-model-3.0.3.tgz#b2199aa935f7035508052e61f09ffa15da708800"
-  integrity sha1-shmaqTX3A1UIBS5h8J/6FdpwiAA=
-  dependencies:
-    immer "^4.0.0"
-
 react-native-android-image-polyfill@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/react-native-android-image-polyfill/download/react-native-android-image-polyfill-1.0.0.tgz#f0b61bac0c6a91b8f8f81233ab1998613adf64ac"
   integrity sha1-8LYbrAxqkbj4+BIzqxmYYTrfZKw=
 
-react-native-auto-height-image@^1.1.1:
+react-native-auto-height-image@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npm.taobao.org/react-native-auto-height-image/download/react-native-auto-height-image-1.1.3.tgz#33fe313557bc2ca667d402eb495e1fc9f615b907"
   integrity sha1-M/4xNVe8LKZn1ALrSV4fyfYVuQc=
