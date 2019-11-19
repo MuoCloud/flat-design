@@ -14,6 +14,8 @@ import Separator from './Separator'
 
 const BOTTOM_SPACE = getBottomSpace()
 
+type FlexAlign = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
+
 interface Props extends BoxProps, ViewProps {
   flex?: number
   color?: string
@@ -52,16 +54,22 @@ export default memo((props: Props) => {
     (color === 'transparent' ? 'transparent' : darken(color, 5))
 
   const verticalAlignValue = {
-    top: 'flex-start',
-    middle: 'center',
-    bottom: 'flex-end'
-  }[verticalAlign] as 'flex-start' | 'center' | 'flex-end'
+    'top': 'flex-start',
+    'middle': 'center',
+    'bottom': 'flex-end',
+    'space-evenly': 'space-evenly',
+    'space-around': 'space-around',
+    'space-between': 'space-between'
+  }[verticalAlign] as FlexAlign
 
   const alignValue = {
-    left: 'flex-start',
-    center: 'center',
-    right: 'flex-end'
-  }[align] as 'flex-start' | 'center' | 'flex-end'
+    'left': 'flex-start',
+    'center': 'center',
+    'right': 'flex-end',
+    'space-evenly': 'space-evenly',
+    'space-around': 'space-around',
+    'space-between': 'space-between'
+  }[align] as FlexAlign
 
   // Touchable effect
   const [active, setActive] = useState(false)

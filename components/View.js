@@ -9,14 +9,20 @@ export default memo((props) => {
     const activeColor = props.activeColor ||
         (color === 'transparent' ? 'transparent' : darken(color, 5));
     const verticalAlignValue = {
-        top: 'flex-start',
-        middle: 'center',
-        bottom: 'flex-end'
+        'top': 'flex-start',
+        'middle': 'center',
+        'bottom': 'flex-end',
+        'space-evenly': 'space-evenly',
+        'space-around': 'space-around',
+        'space-between': 'space-between'
     }[verticalAlign];
     const alignValue = {
-        left: 'flex-start',
-        center: 'center',
-        right: 'flex-end'
+        'left': 'flex-start',
+        'center': 'center',
+        'right': 'flex-end',
+        'space-evenly': 'space-evenly',
+        'space-around': 'space-around',
+        'space-between': 'space-between'
     }[align];
     const [active, setActive] = useState(false);
     const onPressIn = useCallback(() => setActive(true), []);
