@@ -154,6 +154,8 @@ export default memo(forwardRef((props: Props, ref: any) => {
       keyExtractor={keyExtractor}
       renderItem={renderItemCallback}
       removeClippedSubviews={false}
+      horizontal={horizontal}
+      inverted={inverted}
       contentContainerStyle={[
         {
           ...((!isBusy && list.length === 0) && {

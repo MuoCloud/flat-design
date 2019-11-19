@@ -65,7 +65,7 @@ export default memo(forwardRef((props, ref) => {
             flatListRef.current.scrollTo(0);
         }
     }));
-    return (<FlatList ref={flatListRef} refreshControl={(!horizontal && allowRefresh) && (<RefreshControl refreshing={isRefreshing} onRefresh={refresh}/>)} ListFooterComponent={horizontal ? null : footerComponent} ListEmptyComponent={isBusy ? null : ListEmptyComponent} onEndReached={() => next()} onEndReachedThreshold={0.1} data={list} keyExtractor={keyExtractor} renderItem={renderItemCallback} removeClippedSubviews={false} contentContainerStyle={[
+    return (<FlatList ref={flatListRef} refreshControl={(!horizontal && allowRefresh) && (<RefreshControl refreshing={isRefreshing} onRefresh={refresh}/>)} ListFooterComponent={horizontal ? null : footerComponent} ListEmptyComponent={isBusy ? null : ListEmptyComponent} onEndReached={() => next()} onEndReachedThreshold={0.1} data={list} keyExtractor={keyExtractor} renderItem={renderItemCallback} removeClippedSubviews={false} horizontal={horizontal} inverted={inverted} contentContainerStyle={[
         {
             ...((!isBusy && list.length === 0) && {
                 flex: 1
