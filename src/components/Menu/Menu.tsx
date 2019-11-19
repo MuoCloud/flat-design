@@ -17,8 +17,8 @@ import Modal from '../Modal'
 import Portal from '../Portal'
 
 interface Props {
-  renderItem: JSX.Element
-  children: JSX.Element[]
+  renderItem: React.ReactNode
+  children: React.ReactNode
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }
 

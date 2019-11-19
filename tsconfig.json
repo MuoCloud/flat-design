@@ -11,6 +11,8 @@
     "noEmitOnError": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowJs": false,

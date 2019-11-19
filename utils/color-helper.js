@@ -2,6 +2,9 @@ export const getContentColorSystem = (color) => {
     const { r, g, b } = (() => {
         if (color.match(/^rgb/)) {
             const matches = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+            if (!matches) {
+                throw new Error('invalid color');
+            }
             return {
                 r: Number(matches[1]),
                 g: Number(matches[2]),
@@ -9,7 +12,8 @@ export const getContentColorSystem = (color) => {
             };
         }
         else {
-            const match = +('0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&'));
+            const partial = color.slice(1);
+            const match = +('0x' + (color.length < 5 ? partial.replace(/./g, '$&$&') : partial));
             return {
                 r: match >> 16,
                 g: match >> 8 & 255,
