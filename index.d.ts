@@ -8,6 +8,7 @@ export { default as FadeInView } from './components/FadeInView';
 export { default as Icon } from './components/Icon';
 export { default as Image } from './components/Image';
 export { default as InfiniteList } from './components/InfiniteList';
+export { default as KeyboardAvoidingView } from './components/KeyboardAvoidingView';
 export { default as ListNav } from './components/ListNav';
 export { default as Loading } from './components/Loading';
 export * from './components/Menu';
