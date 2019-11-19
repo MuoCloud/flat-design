@@ -1,6 +1,5 @@
 import { map, reverse } from 'lodash';
 import React, { memo, useMemo } from 'react';
-import { extractBoxStyles } from '../utils';
 import Avatar from './Avatar';
 import View from './View';
 export default memo((props) => {
@@ -12,7 +11,6 @@ export default memo((props) => {
             alignItems: 'center',
             alignSelf: 'flex-start'
         },
-        extractBoxStyles(props),
         style
     ]} {...restProps}>
       {map(reversedSources, (source, index) => (<Avatar key={index} height={size} width={size} source={source} style={{

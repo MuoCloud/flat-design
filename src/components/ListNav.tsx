@@ -1,11 +1,9 @@
 import React, { memo } from 'react'
-import { GestureResponderEvent, Text, ViewProps } from 'react-native'
-import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { GestureResponderEvent, Text } from 'react-native'
 import Icon from './Icon'
-import View from './View'
+import View, { ViewProps } from './View'
 
-interface Props extends BoxProps, ViewProps {
+interface Props extends ViewProps {
   color?: string
   backgroundColor?: string
   title: string
@@ -33,7 +31,6 @@ export default memo((props: Props) => {
           flexDirection: 'row',
           alignItems: 'center'
         },
-        extractBoxStyles(props),
         style
       ]}
       {...restProps}

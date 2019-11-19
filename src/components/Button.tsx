@@ -1,14 +1,10 @@
 import React, { memo } from 'react'
-import {
-  GestureResponderEvent,
-  Text,
-  ViewProps
-} from 'react-native'
-import { BoxProps } from '../types/common-props'
+import { GestureResponderEvent } from 'react-native'
 import { darken, getContentColorSystem, lighten } from '../utils'
-import View from './View'
+import Text from './Text'
+import View, { ViewProps } from './View'
 
-interface Props extends BoxProps, ViewProps {
+interface Props extends ViewProps {
   children: string
   size?: 'large' | 'medium' | 'small'
   disabled?: boolean

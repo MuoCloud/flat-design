@@ -16,7 +16,7 @@ import { getBottomSpace } from 'react-native-iphone-x-helper'
 import listLoading from '../assets/lottie/list_loading.json'
 import { BoxProps } from '../types/common-props'
 import { CursorDataProvider, OffsetDataProvider } from '../types/data-provider'
-import { extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
+import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
 import FadeInView from './FadeInView'
 import Separator from './Separator'
 
@@ -41,25 +41,18 @@ export default memo(forwardRef((props: Props, ref: any) => {
   const {
     dataProvider,
     pollingDataProvider,
+    dataPipe = defaultPipe,
     renderItem,
-    ListHeaderComponent,
     ListEmptyComponent,
-    ItemSeparatorComponent,
-    getItemLayout,
-    contentContainerStyle,
-    style,
-    onContentSizeChange,
     allowRefresh = true,
+    onRefresh,
     fadeIn,
-    onScroll,
-    onLayout,
+    enableBottomSpace,
     inverted,
     horizontal,
-    dataPipe = defaultPipe,
-    onRefresh,
-    enableBottomSpace,
-    showsHorizontalScrollIndicator = true,
-    showsVerticalScrollIndicator = true
+    contentContainerStyle,
+    style,
+    ...restProps
   } = props
 
   const [isBusy, setBusy] = useState(false)
@@ -153,21 +146,13 @@ export default memo(forwardRef((props: Props, ref: any) => {
           />
         )
       }
-      showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
-      showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-      ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={horizontal ? null : footerComponent}
       ListEmptyComponent={isBusy ? null : ListEmptyComponent}
-      onContentSizeChange={onContentSizeChange}
       onEndReached={() => next()}
       onEndReachedThreshold={0.1}
-      onScroll={onScroll}
-      onLayout={onLayout}
       data={list}
       keyExtractor={keyExtractor}
       renderItem={renderItemCallback}
-      ItemSeparatorComponent={ItemSeparatorComponent}
-      getItemLayout={getItemLayout}
       removeClippedSubviews={false}
       contentContainerStyle={[
         {
@@ -182,8 +167,7 @@ export default memo(forwardRef((props: Props, ref: any) => {
         extractBoxMarginStyles(props),
         style
       ]}
-      inverted={inverted}
-      horizontal={horizontal}
+      {...excludeBoxProps(restProps)}
     />
   )
 }))

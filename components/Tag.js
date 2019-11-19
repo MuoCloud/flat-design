@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { extractBoxStyles } from '../utils';
 import Text from './Text';
 import View from './View';
 export default memo((props) => {
@@ -9,7 +8,6 @@ export default memo((props) => {
             paddingHorizontal: 12,
             height: 26,
         },
-        extractBoxStyles(props),
         style
     ]} {...restProps}>
       <Text color={textColor} size={13} lineHeight={20} bold={bold} style={textStyle}>

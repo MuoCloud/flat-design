@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { Text } from 'react-native';
 import { darken, getContentColorSystem, lighten } from '../utils';
+import Text from './Text';
 import View from './View';
 export default memo((props) => {
     const { children, size = 'large', color = '#ffffff', disabled, round = true, bold = true, textSize, onPress, style, ...restRrops } = props;

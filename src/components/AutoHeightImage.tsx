@@ -4,7 +4,7 @@ import { GestureResponderEvent } from 'react-native'
 import AutoHeightImage, { AutoHeightImageProps } from 'react-native-auto-height-image'
 import imageLoading from '../assets/lottie/image_loading.json'
 import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { excludeBoxProps, extractBoxStyles } from '../utils'
 import View from './View'
 
 interface Props extends BoxProps, AutoHeightImageProps {
@@ -51,7 +51,7 @@ export default (props: Props) => {
 
       <AutoHeightImage
         onHeightChange={onHeightChangeHandler}
-        {...restProps}
+        {...excludeBoxProps(restProps)}
       />
     </View>
   )

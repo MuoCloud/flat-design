@@ -1,11 +1,9 @@
 import React, { memo } from 'react'
-import { GestureResponderEvent, TextStyle, ViewProps } from 'react-native'
-import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { GestureResponderEvent, TextStyle } from 'react-native'
 import Text from './Text'
-import View from './View'
+import View, { ViewProps } from './View'
 
-interface Props extends BoxProps, ViewProps {
+interface Props extends ViewProps {
   children: string
   textStyle?: TextStyle
   color?: string
@@ -40,7 +38,6 @@ export default memo((props: Props) => {
           paddingHorizontal: 12,
           height: 26,
         },
-        extractBoxStyles(props),
         style
       ]}
       {...restProps}

@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback
 } from 'react-native'
 import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { excludeBoxProps, extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, ImageProps {
   onPress?: (event: GestureResponderEvent) => void
@@ -24,7 +24,7 @@ export default memo((props: Props) => {
         extractBoxStyles(props),
         style
       ]}
-      {...restProps}
+      {...excludeBoxProps(restProps)}
     />
   )
 

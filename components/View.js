@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { darken, extractBoxStyles } from '../utils';
+import { darken, excludeBoxProps, extractBoxStyles } from '../utils';
 import Separator from './Separator';
 const BOTTOM_SPACE = getBottomSpace();
 export default memo((props) => {
@@ -49,7 +49,7 @@ export default memo((props) => {
         extractBoxStyles(props),
         style
     ];
-    const viewComponent = (<View style={finalStyle} {...restProps}>
+    const viewComponent = (<View style={finalStyle} {...excludeBoxProps(restProps)}>
       {children}
 
       {(enableBottomSpace && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}

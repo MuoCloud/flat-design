@@ -1,7 +1,7 @@
 import { map, uniq, without } from 'lodash';
 import React, { memo, useCallback, useState } from 'react';
-import { Platform, TextInput, View } from 'react-native';
-import { extractBoxStyles } from '../utils';
+import { Platform, TextInput } from 'react-native';
+import View from './View';
 export default memo((props) => {
     const { initialTags = [], onChangeTags, tagComponent, placeholder = '', style, ...restProps } = props;
     const [tags, setTags] = useState(initialTags);
@@ -45,7 +45,6 @@ export default memo((props) => {
             paddingHorizontal: 10,
             paddingTop: 10,
         },
-        extractBoxStyles(props),
         style
     ]} {...restProps}>
       {map(tags, tag => {

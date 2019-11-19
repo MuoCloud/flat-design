@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageSourcePropType, ViewProps } from 'react-native';
-import { BoxProps } from '../types/common-props';
-interface Props extends BoxProps, ViewProps {
+import { ImageSourcePropType } from 'react-native';
+import { ViewProps } from './View';
+interface Props extends ViewProps {
     sources: ImageSourcePropType[];
     size?: number;
 }

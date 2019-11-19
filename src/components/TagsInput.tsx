@@ -1,11 +1,10 @@
 import { map, uniq, without } from 'lodash'
 import React, { memo, useCallback, useState } from 'react'
-import { Platform, TextInput, View, ViewProps } from 'react-native'
-import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { Platform, TextInput } from 'react-native'
 import { TagProps } from './Tag'
+import View, { ViewProps } from './View'
 
-interface Props extends BoxProps, ViewProps {
+interface Props extends ViewProps {
   initialTags?: string[]
   placeholder?: string
   onChangeTags?: (tags: string[]) => void
@@ -73,7 +72,6 @@ export default memo((props: Props) => {
           paddingHorizontal: 10,
           paddingTop: 10,
         },
-        extractBoxStyles(props),
         style
       ]}
       {...restProps}

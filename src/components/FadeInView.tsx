@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Animated, ViewProps } from 'react-native'
 import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { excludeBoxProps, extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, ViewProps {
   duration?: number
@@ -30,7 +30,7 @@ export default memo((props: Props) => {
         style,
         { opacity }
       ]}
-      {...restProps}
+      {...excludeBoxProps(restProps)}
     >
       {children}
     </Animated.View>

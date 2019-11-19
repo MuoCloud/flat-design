@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { Text } from 'react-native';
-import { extractBoxStyles } from '../utils';
 import Icon from './Icon';
 import View from './View';
 export default memo((props) => {
@@ -12,7 +11,6 @@ export default memo((props) => {
             flexDirection: 'row',
             alignItems: 'center'
         },
-        extractBoxStyles(props),
         style
     ]} {...restProps}>
       <Text style={{

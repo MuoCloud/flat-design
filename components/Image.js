@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Image, TouchableWithoutFeedback } from 'react-native';
-import { extractBoxStyles } from '../utils';
+import { excludeBoxProps, extractBoxStyles } from '../utils';
 export default memo((props) => {
     const { style, onPress, ...restProps } = props;
     const imageComponent = (<Image style={[
@@ -9,7 +9,7 @@ export default memo((props) => {
         },
         extractBoxStyles(props),
         style
-    ]} {...restProps}/>);
+    ]} {...excludeBoxProps(restProps)}/>);
     if (onPress) {
         return (<TouchableWithoutFeedback onPress={onPress}>
         {imageComponent}

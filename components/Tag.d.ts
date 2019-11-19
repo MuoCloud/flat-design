@@ -1,7 +1,7 @@
 import React from 'react';
-import { GestureResponderEvent, TextStyle, ViewProps } from 'react-native';
-import { BoxProps } from '../types/common-props';
-interface Props extends BoxProps, ViewProps {
+import { GestureResponderEvent, TextStyle } from 'react-native';
+import { ViewProps } from './View';
+interface Props extends ViewProps {
     children: string;
     textStyle?: TextStyle;
     color?: string;

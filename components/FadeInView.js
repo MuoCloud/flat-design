@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Animated } from 'react-native';
-import { extractBoxStyles } from '../utils';
+import { excludeBoxProps, extractBoxStyles } from '../utils';
 export default memo((props) => {
     const { duration = 200, style, children, ...restProps } = props;
     const [opacity] = useState(new Animated.Value(0));
@@ -15,7 +15,7 @@ export default memo((props) => {
         extractBoxStyles(props),
         style,
         { opacity }
-    ]} {...restProps}>
+    ]} {...excludeBoxProps(restProps)}>
       {children}
     </Animated.View>);
 });

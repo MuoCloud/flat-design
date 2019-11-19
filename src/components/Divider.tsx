@@ -1,9 +1,7 @@
 import React, { memo } from 'react'
-import { View, ViewProps } from 'react-native'
-import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import View, { ViewProps } from './View'
 
-interface Props extends BoxProps, ViewProps {
+interface Props extends ViewProps {
   color?: string
   height?: number
 }
@@ -27,7 +25,6 @@ export default memo((props: Props) => {
           marginHorizontal: mx,
           marginVertical: my
         },
-        extractBoxStyles(props),
         style
       ]}
       {...restProps}

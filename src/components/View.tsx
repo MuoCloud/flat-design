@@ -1,5 +1,3 @@
-import { BoxProps } from '../types/common-props'
-
 import React, { memo, useCallback, useState } from 'react'
 import {
   GestureResponderEvent,
@@ -10,7 +8,8 @@ import {
   ViewStyle
 } from 'react-native'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
-import { darken, extractBoxStyles } from '../utils'
+import { BoxProps } from '../types/common-props'
+import { darken, excludeBoxProps, extractBoxStyles } from '../utils'
 import Separator from './Separator'
 
 const BOTTOM_SPACE = getBottomSpace()
@@ -101,7 +100,7 @@ export default memo((props: Props) => {
   const viewComponent = (
     <View
       style={finalStyle}
-      {...restProps}
+      {...excludeBoxProps(restProps)}
     >
       {children}
 
@@ -128,3 +127,5 @@ export default memo((props: Props) => {
     return viewComponent
   }
 })
+
+export { Props as ViewProps }

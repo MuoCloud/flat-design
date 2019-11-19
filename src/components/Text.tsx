@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { GestureResponderEvent, Text, TextProps, TouchableOpacity } from 'react-native'
 import { BoxProps } from '../types/common-props'
-import { extractBoxStyles } from '../utils'
+import { excludeBoxProps, extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, TextProps {
   onPress?: (event: GestureResponderEvent) => void
@@ -43,18 +43,22 @@ export default memo((props: Props) => {
           color,
           fontSize: size,
           ...(lineHeight && { lineHeight }),
-          ...(bold && { fontWeight: boldWeight })
+          ...(bold && { fontWeight: boldWeight }),
+          ...(onPress && extractBoxStyles(props))
         },
-        extractBoxStyles(props),
         style
       ]}
-      {...restProps}
+      {...excludeBoxProps(restProps)}
     />
   )
 
   if (onPress) {
     return (
-      <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={onPress}
+        style={extractBoxStyles(props)}
+      >
         {textComponent}
       </TouchableOpacity>
     )

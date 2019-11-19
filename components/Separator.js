@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
-import { View } from 'react-native';
-import { extractBoxStyles } from '../utils';
+import View from './View';
 export default memo((props) => {
     const { color = 'transparent', height = 10, style, ...restProps } = props;
     return (<View style={[
@@ -8,7 +7,6 @@ export default memo((props) => {
             height,
             backgroundColor: color
         },
-        extractBoxStyles(props),
         style
     ]} {...restProps}/>);
 });

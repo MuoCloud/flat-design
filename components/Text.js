@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { extractBoxStyles } from '../utils';
+import { excludeBoxProps, extractBoxStyles } from '../utils';
 let defaultColor = 'black';
 let boldWeight = '600';
 export const setDefaultTextColor = (color) => {
@@ -16,13 +16,13 @@ export default memo((props) => {
             color,
             fontSize: size,
             ...(lineHeight && { lineHeight }),
-            ...(bold && { fontWeight: boldWeight })
+            ...(bold && { fontWeight: boldWeight }),
+            ...(onPress && extractBoxStyles(props))
         },
-        extractBoxStyles(props),
         style
-    ]} {...restProps}/>);
+    ]} {...excludeBoxProps(restProps)}/>);
     if (onPress) {
-        return (<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+        return (<TouchableOpacity activeOpacity={0.8} onPress={onPress} style={extractBoxStyles(props)}>
         {textComponent}
       </TouchableOpacity>);
     }
