@@ -3,7 +3,7 @@ import { ScrollViewProps } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
 import { BoxProps } from '../types/common-props'
-import { extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
+import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
 import Separator from './Separator'
 
 const BOTTOM_SPACE = getBottomSpace()
@@ -40,7 +40,7 @@ export default memo((props: Props) => {
         extractBoxPaddingStyles(props),
         contentContainerStyle
       ]}
-      {...restProps}
+      {...excludeBoxProps(restProps)}
     >
       {children}
 

@@ -1,3 +1,4 @@
+import { omit } from 'lodash'
 import { StyleProp } from 'react-native'
 import { BoxProps } from '../types/common-props'
 
@@ -34,4 +35,23 @@ export const extractBoxStyles = (props: BoxProps) => {
         ...extractBoxMarginStyles(props),
         ...extractBoxPaddingStyles(props)
     }
+}
+
+export const excludeBoxProps = <T extends BoxProps>(props: T) => {
+    return omit(props, [
+        'padding',
+        'pt',
+        'pb',
+        'pl',
+        'pr',
+        'px',
+        'py',
+        'margin',
+        'mt',
+        'mb',
+        'ml',
+        'mr',
+        'mx',
+        'my'
+    ])
 }

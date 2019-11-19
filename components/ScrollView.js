@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils';
+import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils';
 import Separator from './Separator';
 const BOTTOM_SPACE = getBottomSpace();
 export default memo((props) => {
@@ -16,7 +16,7 @@ export default memo((props) => {
     ]} contentContainerStyle={[
         extractBoxPaddingStyles(props),
         contentContainerStyle
-    ]} {...restProps}>
+    ]} {...excludeBoxProps(restProps)}>
       {children}
 
       {(enableBottomSpace && BOTTOM_SPACE > 0) && (<Separator height={BOTTOM_SPACE}/>)}

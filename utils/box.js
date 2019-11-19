@@ -1,3 +1,4 @@
+import { omit } from 'lodash';
 export const extractBoxMarginStyles = (props) => {
     const style = {};
     if (props.margin) {
@@ -53,4 +54,22 @@ export const extractBoxStyles = (props) => {
         ...extractBoxMarginStyles(props),
         ...extractBoxPaddingStyles(props)
     };
+};
+export const excludeBoxProps = (props) => {
+    return omit(props, [
+        'padding',
+        'pt',
+        'pb',
+        'pl',
+        'pr',
+        'px',
+        'py',
+        'margin',
+        'mt',
+        'mb',
+        'ml',
+        'mr',
+        'mx',
+        'my'
+    ]);
 };
