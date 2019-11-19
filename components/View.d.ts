@@ -8,8 +8,8 @@ interface Props extends BoxProps, ViewProps {
     row?: boolean;
     column?: boolean;
     wrap?: boolean;
-    verticalAlign?: 'top' | 'middle' | 'bottom';
-    align?: 'left' | 'center' | 'right';
+    verticalAlign?: 'top' | 'middle' | 'bottom' | 'space-between' | 'space-around' | 'space-evenly';
+    align?: 'left' | 'center' | 'right' | 'space-between' | 'space-around' | 'space-evenly';
     radius?: number;
     enableBottomSpace?: boolean;
     touchableStyle?: ViewStyle;
