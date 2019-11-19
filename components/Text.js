@@ -17,7 +17,7 @@ export default memo((props) => {
             fontSize: size,
             ...(lineHeight && { lineHeight }),
             ...(bold && { fontWeight: boldWeight }),
-            ...(onPress && extractBoxStyles(props))
+            ...(!onPress && extractBoxStyles(props))
         },
         style
     ]} {...excludeBoxProps(restProps)}/>);

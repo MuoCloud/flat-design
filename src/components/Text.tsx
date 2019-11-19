@@ -44,7 +44,7 @@ export default memo((props: Props) => {
           fontSize: size,
           ...(lineHeight && { lineHeight }),
           ...(bold && { fontWeight: boldWeight }),
-          ...(onPress && extractBoxStyles(props))
+          ...(!onPress && extractBoxStyles(props))
         },
         style
       ]}
