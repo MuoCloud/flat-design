@@ -3,13 +3,17 @@ import { ScrollViewProps } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
 import { BoxProps } from '../types/common-props'
-import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
+import {
+  excludeBoxProps,
+  extractBoxMarginStyles,
+  extractBoxPaddingStyles,
+  extractFlexStyles
+} from '../utils'
 import Separator from './Separator'
 
 const BOTTOM_SPACE = getBottomSpace()
 
 interface Props extends BoxProps, ScrollViewProps {
-  flex?: number
   color?: string
   enableBottomSpace?: boolean
   children?: React.ReactNode
@@ -17,7 +21,6 @@ interface Props extends BoxProps, ScrollViewProps {
 
 export default memo((props: Props) => {
   const {
-    flex,
     color,
     enableBottomSpace,
     style,
@@ -30,10 +33,10 @@ export default memo((props: Props) => {
     <ScrollView
       style={[
         {
-          ...(typeof flex === 'number' && { flex }),
           ...(color && { backgroundColor: color })
         },
         extractBoxMarginStyles(props),
+        extractFlexStyles(props),
         style
       ]}
       contentContainerStyle={[

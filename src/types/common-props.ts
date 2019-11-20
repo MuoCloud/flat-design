@@ -1,4 +1,7 @@
 export interface BoxProps {
+  flex?: number
+  wrap?: boolean | 'nowrap' | 'wrap' | 'wrap-reverse'
+
   padding?: number | 'auto'
   pt?: number | 'auto'
   pb?: number | 'auto'

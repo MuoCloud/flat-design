@@ -30,15 +30,32 @@ export const extractBoxPaddingStyles = (props: BoxProps) => {
     return style
 }
 
+export const extractFlexStyles = (props: BoxProps) => {
+    const style: StyleProp<any> = {}
+
+    if (typeof props.flex === 'number') {
+        style.flex = props.flex
+    }
+
+    if (props.wrap) {
+        style.flexWrap = typeof props.wrap === 'boolean' ? 'wrap' : props.wrap
+    }
+
+    return style
+}
+
 export const extractBoxStyles = (props: BoxProps) => {
     return {
         ...extractBoxMarginStyles(props),
-        ...extractBoxPaddingStyles(props)
+        ...extractBoxPaddingStyles(props),
+        ...extractFlexStyles(props)
     }
 }
 
 export const excludeBoxProps = <T extends BoxProps>(props: T) => {
     return omit(props, [
+        'flex',
+        'wrap',
         'padding',
         'pt',
         'pb',

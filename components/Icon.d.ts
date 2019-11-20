@@ -1,10 +1,12 @@
 import React from 'react';
 import { GestureResponderEvent, ViewStyle } from 'react-native';
-interface Props {
+import { BoxProps } from '../types/common-props';
+export declare type IconPack = 'eva' | 'ion' | 'md';
+interface Props extends BoxProps {
     size?: number;
     color?: string;
     name?: string;
-    pack?: 'eva' | 'ion' | 'md';
+    pack?: IconPack;
     style?: ViewStyle;
     onPress?: (event: GestureResponderEvent) => void;
 }

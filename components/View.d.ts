@@ -2,14 +2,14 @@ import React from 'react';
 import { GestureResponderEvent, ViewProps, ViewStyle } from 'react-native';
 import { BoxProps } from '../types/common-props';
 interface Props extends BoxProps, ViewProps {
-    flex?: number;
     color?: string;
     activeColor?: string;
     row?: boolean;
     column?: boolean;
-    wrap?: boolean;
     verticalAlign?: 'top' | 'middle' | 'bottom' | 'space-between' | 'space-around' | 'space-evenly';
     align?: 'left' | 'center' | 'right' | 'space-between' | 'space-around' | 'space-evenly';
+    height?: number | string;
+    width?: number | string;
     radius?: number;
     enableBottomSpace?: boolean;
     touchableStyle?: ViewStyle;

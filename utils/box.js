@@ -49,14 +49,27 @@ export const extractBoxPaddingStyles = (props) => {
     }
     return style;
 };
+export const extractFlexStyles = (props) => {
+    const style = {};
+    if (typeof props.flex === 'number') {
+        style.flex = props.flex;
+    }
+    if (props.wrap) {
+        style.flexWrap = typeof props.wrap === 'boolean' ? 'wrap' : props.wrap;
+    }
+    return style;
+};
 export const extractBoxStyles = (props) => {
     return {
         ...extractBoxMarginStyles(props),
-        ...extractBoxPaddingStyles(props)
+        ...extractBoxPaddingStyles(props),
+        ...extractFlexStyles(props)
     };
 };
 export const excludeBoxProps = (props) => {
     return omit(props, [
+        'flex',
+        'wrap',
         'padding',
         'pt',
         'pb',

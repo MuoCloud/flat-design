@@ -17,14 +17,14 @@ const BOTTOM_SPACE = getBottomSpace()
 type FlexAlign = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
 
 interface Props extends BoxProps, ViewProps {
-  flex?: number
   color?: string
   activeColor?: string
   row?: boolean
   column?: boolean
-  wrap?: boolean
   verticalAlign?: 'top' | 'middle' | 'bottom' | 'space-between' | 'space-around' | 'space-evenly'
   align?: 'left' | 'center' | 'right' | 'space-between' | 'space-around' | 'space-evenly'
+  height?: number | string
+  width?: number | string
   radius?: number
   enableBottomSpace?: boolean
   touchableStyle?: ViewStyle
@@ -34,14 +34,14 @@ interface Props extends BoxProps, ViewProps {
 
 export default memo((props: Props) => {
   const {
-    flex,
-    wrap,
     color = 'transparent',
     row,
     column,
     align,
     verticalAlign,
     radius = 0,
+    height,
+    width,
     enableBottomSpace,
     onPress,
     style,
@@ -79,8 +79,6 @@ export default memo((props: Props) => {
   const finalStyle: StyleProp<ViewStyle> = [
     {
       backgroundColor: (onPress && active) ? activeColor : color,
-      ...(typeof flex === 'number' && { flex }),
-      ...(wrap && { flexWrap: 'wrap' }),
       ...(row && {
         flexDirection: 'row',
         ...(verticalAlign && {
@@ -99,6 +97,8 @@ export default memo((props: Props) => {
           justifyContent: verticalAlignValue
         })
       }),
+      ...(height && { height }),
+      ...(width && { width }),
       borderRadius: radius,
     },
     extractBoxStyles(props),

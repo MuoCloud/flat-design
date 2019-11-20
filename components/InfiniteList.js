@@ -5,7 +5,7 @@ import { RefreshControl, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import listLoading from '../assets/lottie/list_loading.json';
-import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils';
+import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles, extractFlexStyles } from '../utils';
 import FadeInView from './FadeInView';
 import Separator from './Separator';
 export const defaultPipe = (list, data) => uniqBy([...list, ...data], '_id');
@@ -75,6 +75,7 @@ export default memo(forwardRef((props, ref) => {
         contentContainerStyle
     ]} style={[
         extractBoxMarginStyles(props),
+        extractFlexStyles(props),
         style
     ]} {...excludeBoxProps(restProps)}/>);
 }));

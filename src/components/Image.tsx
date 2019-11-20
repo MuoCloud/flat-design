@@ -9,17 +9,23 @@ import { BoxProps } from '../types/common-props'
 import { excludeBoxProps, extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, ImageProps {
+  backgroundColor?: string
   onPress?: (event: GestureResponderEvent) => void
 }
 
 export default memo((props: Props) => {
-  const { style, onPress, ...restProps } = props
+  const {
+    backgroundColor = '#eceff1',
+    style,
+    onPress,
+    ...restProps
+  } = props
 
   const imageComponent = (
     <Image
       style={[
         {
-          backgroundColor: '#eceff1',
+          backgroundColor
         },
         extractBoxStyles(props),
         style

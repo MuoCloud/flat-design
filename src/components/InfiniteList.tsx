@@ -16,7 +16,12 @@ import { getBottomSpace } from 'react-native-iphone-x-helper'
 import listLoading from '../assets/lottie/list_loading.json'
 import { BoxProps } from '../types/common-props'
 import { CursorDataProvider, OffsetDataProvider } from '../types/data-provider'
-import { excludeBoxProps, extractBoxMarginStyles, extractBoxPaddingStyles } from '../utils'
+import {
+  excludeBoxProps,
+  extractBoxMarginStyles,
+  extractBoxPaddingStyles,
+  extractFlexStyles
+} from '../utils'
 import FadeInView from './FadeInView'
 import Separator from './Separator'
 
@@ -167,6 +172,7 @@ export default memo(forwardRef((props: Props, ref: any) => {
       ]}
       style={[
         extractBoxMarginStyles(props),
+        extractFlexStyles(props),
         style
       ]}
       {...excludeBoxProps(restProps)}

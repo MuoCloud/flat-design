@@ -5,7 +5,7 @@ import { darken, excludeBoxProps, extractBoxStyles } from '../utils';
 import Separator from './Separator';
 const BOTTOM_SPACE = getBottomSpace();
 export default memo((props) => {
-    const { flex, wrap, color = 'transparent', row, column, align, verticalAlign, radius = 0, enableBottomSpace, onPress, style, touchableStyle, children, ...restProps } = props;
+    const { color = 'transparent', row, column, align, verticalAlign, radius = 0, height, width, enableBottomSpace, onPress, style, touchableStyle, children, ...restProps } = props;
     const activeColor = props.activeColor ||
         (color === 'transparent' ? 'transparent' : darken(color, 5));
     const verticalAlignValue = {
@@ -30,8 +30,6 @@ export default memo((props) => {
     const finalStyle = [
         {
             backgroundColor: (onPress && active) ? activeColor : color,
-            ...(typeof flex === 'number' && { flex }),
-            ...(wrap && { flexWrap: 'wrap' }),
             ...(row && {
                 flexDirection: 'row',
                 ...(verticalAlign && {
@@ -50,6 +48,8 @@ export default memo((props) => {
                     justifyContent: verticalAlignValue
                 })
             }),
+            ...(height && { height }),
+            ...(width && { width }),
             borderRadius: radius,
         },
         extractBoxStyles(props),

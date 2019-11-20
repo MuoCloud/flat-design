@@ -4,7 +4,6 @@ import { BoxProps } from '../types/common-props'
 import { excludeBoxProps, extractBoxStyles } from '../utils'
 
 interface Props extends BoxProps, ViewProps {
-  flex?: number
   duration?: number
   children?: React.ReactNode
 }
@@ -27,9 +26,6 @@ export default memo((props: Props) => {
   return (
     <Animated.View
       style={[
-        {
-          ...(typeof flex === 'number' && { flex })
-        },
         extractBoxStyles(props),
         style,
         { opacity }

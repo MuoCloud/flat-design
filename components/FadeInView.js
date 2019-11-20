@@ -12,9 +12,6 @@ export default memo((props) => {
         }).start();
     }, []);
     return (<Animated.View style={[
-        {
-            ...(typeof flex === 'number' && { flex })
-        },
         extractBoxStyles(props),
         style,
         { opacity }
