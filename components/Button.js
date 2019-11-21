@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { darken, getContentColorSystem, lighten } from '../utils';
+import { darken, excludeBoxProps, extractBoxStyles, getContentColorSystem, lighten } from '../utils';
 import Text from './Text';
 import View from './View';
 export default memo((props) => {
@@ -33,8 +33,9 @@ export default memo((props) => {
             height,
             paddingHorizontal
         },
+        extractBoxStyles(props),
         style
-    ]} {...restRrops}>
+    ]} {...excludeBoxProps(restRrops)}>
       <Text style={{
         color: textColor,
         fontSize: textSize || fontSize,
