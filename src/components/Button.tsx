@@ -1,6 +1,12 @@
 import React, { memo } from 'react'
 import { GestureResponderEvent } from 'react-native'
-import { darken, getContentColorSystem, lighten } from '../utils'
+import {
+  darken,
+  excludeBoxProps,
+  extractBoxStyles,
+  getContentColorSystem,
+  lighten
+} from '../utils'
 import Text from './Text'
 import View, { ViewProps } from './View'
 
@@ -72,9 +78,10 @@ export default memo((props: Props) => {
           height,
           paddingHorizontal
         },
+        extractBoxStyles(props),
         style
       ]}
-      {...restRrops}
+      {...excludeBoxProps(restRrops)}
     >
       <Text
         style={{
