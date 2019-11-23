@@ -2,10 +2,12 @@ import React, { memo } from 'react';
 import { Image, TouchableWithoutFeedback } from 'react-native';
 import { excludeBoxProps, extractBoxStyles } from '../utils';
 export default memo((props) => {
-    const { backgroundColor = '#eceff1', style, onPress, ...restProps } = props;
+    const { backgroundColor = '#eceff1', width, height, style, onPress, ...restProps } = props;
     const imageComponent = (<Image style={[
         {
-            backgroundColor
+            backgroundColor,
+            width,
+            height
         },
         extractBoxStyles(props),
         style

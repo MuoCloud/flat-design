@@ -1,8 +1,10 @@
 import React from 'react';
 import { GestureResponderEvent, ImageProps } from 'react-native';
 import { BoxProps } from '../types/common-props';
-interface Props extends BoxProps, ImageProps {
+interface Props extends BoxProps, Omit<ImageProps, 'width' | 'height'> {
     backgroundColor?: string;
+    width?: number | string;
+    height?: number | string;
     onPress?: (event: GestureResponderEvent) => void;
 }
 declare const _default: React.MemoExoticComponent<(props: Props) => JSX.Element>;
