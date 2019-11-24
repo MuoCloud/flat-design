@@ -1,25 +1,27 @@
 import React, { memo } from 'react'
 import { KeyboardAvoidingView, Platform, ViewProps } from 'react-native'
+import { BoxProps } from '../types/common-props'
+import { extractBoxStyles } from '../utils'
 
-interface Props extends ViewProps {
-  flex?: number
+interface Props extends BoxProps, ViewProps {
+  color?: string
   children: React.ReactNode
 }
 
 export default memo((props: Props) => {
-  const { style, flex, children } = props
+  const { color = '#ffffff', style, ...restProps } = props
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={[
         {
-          ...(typeof flex === 'number' && { flex })
+          backgroundColor: color
         },
+        extractBoxStyles(props),
         style
       ]}
-    >
-      {children}
-    </KeyboardAvoidingView>
+      {...restProps}
+    />
   )
 })

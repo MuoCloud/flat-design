@@ -1,7 +1,8 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-interface Props extends ViewProps {
-    flex?: number;
+import { BoxProps } from '../types/common-props';
+interface Props extends BoxProps, ViewProps {
+    color?: string;
     children: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<(props: Props) => JSX.Element>;

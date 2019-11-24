@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
+import { extractBoxStyles } from '../utils';
 export default memo((props) => {
-    const { style, flex, children } = props;
+    const { color = '#ffffff', style, ...restProps } = props;
     return (<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={[
         {
-            ...(typeof flex === 'number' && { flex })
+            backgroundColor: color
         },
+        extractBoxStyles(props),
         style
-    ]}>
-      {children}
-    </KeyboardAvoidingView>);
+    ]} {...restProps}/>);
 });
