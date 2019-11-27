@@ -20,7 +20,7 @@ export default memo((props: Props) => {
   const { size = 20, color = 'black', name, pack = 'eva', onPress, style } = props
 
   const finalStyle: ViewStyle = {
-    ...(onPress && extractBoxStyles(props)),
+    ...(!onPress && extractBoxStyles(props)),
     ...style
   }
 

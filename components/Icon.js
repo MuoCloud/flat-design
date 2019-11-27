@@ -6,7 +6,7 @@ import { extractBoxStyles } from '../utils';
 export default memo((props) => {
     const { size = 20, color = 'black', name, pack = 'eva', onPress, style } = props;
     const finalStyle = {
-        ...(onPress && extractBoxStyles(props)),
+        ...(!onPress && extractBoxStyles(props)),
         ...style
     };
     const iconComponent = (() => {
