@@ -1,19 +1,24 @@
 import React, { memo } from 'react'
-import { KeyboardAvoidingView, Platform, ViewProps } from 'react-native'
+import { KeyboardAvoidingView, KeyboardAvoidingViewProps } from 'react-native'
 import { BoxProps } from '../types/common-props'
 import { extractBoxStyles } from '../utils'
 
-interface Props extends BoxProps, ViewProps {
+interface Props extends BoxProps, KeyboardAvoidingViewProps {
   color?: string
   children: React.ReactNode
 }
 
 export default memo((props: Props) => {
-  const { color = '#ffffff', style, ...restProps } = props
+  const {
+    color = '#ffffff',
+    behavior = 'padding',
+    style,
+    ...restProps
+  } = props
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      behavior={behavior}
       style={[
         {
           backgroundColor: color

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ViewProps } from 'react-native';
+import { KeyboardAvoidingViewProps } from 'react-native';
 import { BoxProps } from '../types/common-props';
-interface Props extends BoxProps, ViewProps {
+interface Props extends BoxProps, KeyboardAvoidingViewProps {
     color?: string;
     children: React.ReactNode;
 }
